@@ -3,3 +3,4 @@ tools/video/quadros/
 tools/og.html
 tools/material/guia.html
 node_modules/
+.vercel
