@@ -77,8 +77,8 @@
   }, { rootMargin: '-42% 0px -42% 0px' });
   pilares.forEach(function (p) { ioP.observe(p); });
 
-  /* topo: a foto aproxima e as linhas do título se afastam ao rolar */
-  var heroImg = d.getElementById('heroImg'), linhas = d.querySelectorAll('.hero h1 .l'), heroEl = d.querySelector('.hero');
+  /* topo: a foto aproxima devagar ao rolar */
+  var heroImg = d.getElementById('heroImg'), heroEl = d.querySelector('.hero');
   if (heroImg && !calmo) {
     var noTopo = true, pedido = false;
     new IntersectionObserver(function (es) { noTopo = es[0].isIntersecting; }).observe(heroEl);
@@ -86,9 +86,26 @@
       pedido = false;
       var y = Math.min(w.scrollY, w.innerHeight);
       heroImg.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0) scale(' + (1 + y * 0.00022).toFixed(4) + ')';
-      linhas.forEach(function (l, k) { l.style.transform = 'translate3d(' + ((k % 2 ? 1 : -1) * y * (0.05 + k * 0.02)).toFixed(1) + 'px,0,0)'; });
     };
     w.addEventListener('scroll', function () { if (noTopo && !pedido) { pedido = true; requestAnimationFrame(mexe); } }, { passive: true });
+  }
+
+  /* equipe: a foto começa aproximada e abre até mostrar as cinco, conforme a rolagem */
+  var zoomImg = d.querySelector('[data-zoom]');
+  if (zoomImg && !calmo) {
+    var zSec = zoomImg.closest('.equipe-hero'), zVis = false, zPed = false;
+    new IntersectionObserver(function (es) { zVis = es[0].isIntersecting; zPede(); }, { rootMargin: '10% 0px' }).observe(zSec);
+    function zPede() { if (zVis && !zPed) { zPed = true; requestAnimationFrame(zMove); } }
+    function zMove() {
+      zPed = false;
+      var vh = w.innerHeight, r = zSec.getBoundingClientRect();
+      var ini = w.matchMedia('(min-width: 760px)').matches ? 1.14 : 1.55;
+      var prog = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));
+      var esc = ini - (ini - 1) * (1 - Math.pow(1 - prog, 2));
+      zoomImg.style.transform = 'scale(' + esc.toFixed(4) + ')';
+    }
+    w.addEventListener('scroll', zPede, { passive: true });
+    w.addEventListener('resize', zPede);
   }
 
   /* parallax suave nas fotos de fundo (equipe e citação) */
