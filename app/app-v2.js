@@ -390,6 +390,7 @@
     else if (a === 'aba') { aba = v; render(); }
     else if (a === 'play') {
       var pl = $('#player'), n = +pl.dataset.n, src = VIDEOS[n];
+      if (src) pl.classList.add('tocando');
       if (src && /youtu/.test(src)) pl.insertAdjacentHTML('beforeend', '<iframe src="' + src + '" title="Vídeo do módulo ' + n + '" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>');
       else if (src) pl.insertAdjacentHTML('beforeend', '<video src="' + src + '" controls autoplay playsinline preload="auto"><track kind="captions" srclang="pt-BR" label="Português" src="/assets/video/aula-01.vtt"></video>');
       else pl.insertAdjacentHTML('beforeend', '<div class="sem"><div><b>O vídeo deste módulo entra aqui</b><p>Nesta demonstração, só a primeira aula tem vídeo. O roteiro e a tarefa do módulo já estão nas abas abaixo.</p></div></div>');
