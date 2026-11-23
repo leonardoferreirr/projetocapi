@@ -68,6 +68,7 @@
       g.classList.toggle('ativo', k === i);
       g.classList.toggle('feito', k < i);
     });
+    pilares.forEach(function (p, k) { p.classList.toggle('ativo', k === i); });
     var p = pilares[i];
     if (p) { nome.textContent = p.dataset.nome; mods.textContent = p.dataset.mods; }
   }
@@ -76,8 +77,22 @@
   }, { rootMargin: '-42% 0px -42% 0px' });
   pilares.forEach(function (p) { ioP.observe(p); });
 
-  /* faixa: só corre quando está na tela */
-  var faixa = d.querySelector('.faixa');
+  /* topo: a foto aproxima e as linhas do título se afastam ao rolar */
+  var heroImg = d.getElementById('heroImg'), linhas = d.querySelectorAll('.hero h1 .l'), heroEl = d.querySelector('.hero');
+  if (heroImg && !calmo) {
+    var noTopo = true, pedido = false;
+    new IntersectionObserver(function (es) { noTopo = es[0].isIntersecting; }).observe(heroEl);
+    var mexe = function () {
+      pedido = false;
+      var y = Math.min(w.scrollY, w.innerHeight);
+      heroImg.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0) scale(' + (1 + y * 0.00022).toFixed(4) + ')';
+      linhas.forEach(function (l, k) { l.style.transform = 'translate3d(' + ((k % 2 ? 1 : -1) * y * (0.05 + k * 0.02)).toFixed(1) + 'px,0,0)'; });
+    };
+    w.addEventListener('scroll', function () { if (noTopo && !pedido) { pedido = true; requestAnimationFrame(mexe); } }, { passive: true });
+  }
+
+  /* fitas: só correm quando estão na tela */
+  var faixa = d.querySelector('.fitas');
   if (faixa) {
     faixa.classList.add('pausa');
     new IntersectionObserver(function (es) {

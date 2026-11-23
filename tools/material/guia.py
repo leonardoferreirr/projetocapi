@@ -1,9 +1,9 @@
-"""Gera o PDF 'Guia da jornada C.A.P.I.' (material do módulo 1) a partir de app/dados.js."""
+"""Gera o PDF 'Guia da jornada C.A.P.I.' (material do módulo 1) a partir de app/dados-v2.js."""
 import json, re, os, pathlib
 from playwright.sync_api import sync_playwright
 R = pathlib.Path(__file__).resolve().parents[2]
 CHROME = os.path.expanduser('~/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell')
-js = (R / 'app' / 'dados.js').read_text()
+js = (R / 'app' / 'dados-v2.js').read_text()
 mods = json.loads(re.search(r'window.CAPI_MODS=(\[.*?\]);\n', js, re.S).group(1))
 logo = (R / 'assets' / 'logo.svg').read_text()
 pil = [('C', 'Comportamento', 1, 10, 'O ponto de partida: olhar para os seus hábitos, padrões e reações.', 'Registro de autoconhecimento'),

@@ -85,13 +85,15 @@
     doc: '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>', info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
     chat: '<path d="M4 18.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H8.5z"/>',
     sair: '<path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 16l4-4-4-4M14 12H4"/>', painel: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', site: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9S14.5 18.4 12 21c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"/>',
+    sol: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>', lua: '<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
     pres: '<path d="M4 12h16v8H4zM12 12v8M3 8h18v4H3zM12 8c-2-3.5-6-3.5-6-1s4 1 6 1zm0 0c2-3.5 6-3.5 6-1s-4 1-6 1z"/>', lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>'
   };
+  function temaAtual() { return document.documentElement.dataset.tema === 'escuro' ? 'escuro' : 'claro'; }
   function rota() { var p = location.hash.replace(/^#\/?/, '').split('/'); return { r: p[0] || 'inicio', a: p[1] }; }
   function vai(h) { location.hash = '#/' + h; }
   function anel(p, tam) {
     tam = tam || 92; var r = tam / 2 - 7, C = 2 * Math.PI * r;
-    return '<div class="anel" style="width:' + tam + 'px;height:' + tam + 'px" role="img" aria-label="' + p + '% da jornada concluída"><svg viewBox="0 0 ' + tam + ' ' + tam + '" style="width:' + tam + 'px;height:' + tam + 'px"><circle cx="' + tam / 2 + '" cy="' + tam / 2 + '" r="' + r + '" fill="none" stroke="#4A2032" stroke-width="8"/><circle cx="' + tam / 2 + '" cy="' + tam / 2 + '" r="' + r + '" fill="none" stroke="#CC4452" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C * (1 - p / 100) + '"/></svg><b>' + p + '%</b></div>';
+    return '<div class="anel" style="width:' + tam + 'px;height:' + tam + 'px" role="img" aria-label="' + p + '% da jornada concluída"><svg viewBox="0 0 ' + tam + ' ' + tam + '" style="width:' + tam + 'px;height:' + tam + 'px"><circle cx="' + tam / 2 + '" cy="' + tam / 2 + '" r="' + r + '" fill="none" style="stroke:var(--s3)" stroke-width="8"/><circle cx="' + tam / 2 + '" cy="' + tam / 2 + '" r="' + r + '" fill="none" stroke="#CC4452" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C * (1 - p / 100) + '"/></svg><b>' + p + '%</b></div>';
   }
 
   /* ---------- casca ---------- */
@@ -103,9 +105,9 @@
     return '<header class="bar"><a class="logo" href="#/inicio" aria-label="Início da área da aluna"><svg viewBox="0 0 2852 1020" fill="currentColor" role="img" aria-label="Projeto C.A.P.I."><use href="#logo"/></svg></a>' +
       '<nav aria-label="Área da aluna">' + nav + '</nav>' +
       '<div class="dir"><div class="pill-prog" title="Progresso da jornada"><i><b style="width:' + pct + '%"></b></i>' + feitos() + ' de 30</div>' +
-      '<button class="av" data-a="menu" aria-haspopup="true" aria-expanded="false" aria-label="Menu da conta">' + inicial() + '</button></div>' +
+      '<button class="tema-b" data-a="tema" aria-label="' + (temaAtual() === 'escuro' ? 'Usar tema claro' : 'Usar tema escuro') + '">' + ic(temaAtual() === 'escuro' ? 'sol' : 'lua') + '</button><button class="av" data-a="menu" aria-haspopup="true" aria-expanded="false" aria-label="Menu da conta">' + inicial() + '</button></div>' +
       '<div class="menu-av" id="menuav" role="menu"><div class="quem"><b>' + esc(S.user.nome) + '</b><small class="mut">Turma de ' + esc(S.turma) + '</small></div>' +
-      '<a href="#/apoio" role="menuitem">' + ic('chat') + 'Apoio e conta</a><a href="/app/gestao/" role="menuitem">' + ic('painel') + 'Painel da equipe</a><a href="/" role="menuitem">' + ic('site') + 'Site do projeto</a><button data-a="sair" role="menuitem">' + ic('sair') + 'Sair</button></div></header>' +
+      '<button data-a="tema" role="menuitem">' + ic(temaAtual() === 'escuro' ? 'sol' : 'lua') + (temaAtual() === 'escuro' ? 'Tema claro' : 'Tema escuro') + '</button><a href="#/apoio" role="menuitem">' + ic('chat') + 'Apoio e conta</a><a href="/app/gestao/" role="menuitem">' + ic('painel') + 'Painel da equipe</a><a href="/" role="menuitem">' + ic('site') + 'Site do projeto</a><button data-a="sair" role="menuitem">' + ic('sair') + 'Sair</button></div></header>' +
       '<main class="vista" id="vista" tabindex="-1">' + corpo + '</main><nav class="tabs" aria-label="Navegação">' + tabs + '</nav>';
   }
 
@@ -144,11 +146,11 @@
     for (i = 13; i >= 0; i--) { var d = new Date(); d.setDate(d.getDate() - i); dias.push({ d: d, c: S.ck[dkey(d)] }); }
     var W = 620, H = 170, L = 26, R = 10, T = 12, B = 26, x = function (k) { return L + k * (W - L - R) / 13; }, y = function (v) { return T + (H - T - B) * (1 - (v - 1) / 4); };
     var g = '';
-    for (i = 1; i <= 5; i++) g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(i) + '" y2="' + y(i) + '" stroke="rgba(248,229,173,.08)"/><text x="' + (L - 10) + '" y="' + (y(i) + 4) + '" text-anchor="end">' + i + '</text>';
-    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(3.7) + '" y2="' + y(3.7) + '" stroke="rgba(248,229,173,.45)" stroke-dasharray="3 5"/><text x="' + (W - R) + '" y="' + (y(3.7) - 6) + '" text-anchor="end">média da pesquisa: 3,7</text>';
+    for (i = 1; i <= 5; i++) g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(i) + '" y2="' + y(i) + '" style="stroke:var(--line)"/><text x="' + (L - 10) + '" y="' + (y(i) + 4) + '" text-anchor="end">' + i + '</text>';
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(3.7) + '" y2="' + y(3.7) + '" style="stroke:var(--ouro)" stroke-dasharray="4 5" stroke-width="1.5"/><text x="' + (W - R) + '" y="' + (y(3.7) - 6) + '" text-anchor="end">média da pesquisa: 3,7</text>';
     var pts = dias.map(function (o, k) { return o.c ? [x(k), y(o.c.n), o.c.n] : null; }).filter(Boolean);
     if (pts.length > 1) g += '<polyline fill="none" stroke="#CC4452" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') + '"/>';
-    g += pts.map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4.5" fill="#CC4452" stroke="#311320" stroke-width="2"/>'; }).join('');
+    g += pts.map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4.5" fill="#CC4452" style="stroke:var(--s1)" stroke-width="2"/>'; }).join('');
     g += dias.map(function (o, k) { return k % 2 === 1 || k === 13 ? '<text x="' + x(k) + '" y="' + (H - 6) + '" text-anchor="middle">' + (k === 13 ? 'hoje' : o.d.getDate() + '/' + (o.d.getMonth() + 1)) + '</text>' : ''; }).join('');
     var desc = pts.length ? 'Ansiedade registrada nos últimos 14 dias: ' + pts.map(function (p) { return p[2]; }).join(', ') : 'Nenhum check-in ainda';
     return '<svg class="graf" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + desc + '">' + g + '</svg>';
@@ -377,6 +379,7 @@
     var a = b.dataset.a, v = b.dataset.v;
     if (a === 'demo') { S = demo(); salva(); history.replaceState(null, '', '/app/#/inicio'); render(true); toast('Você está vendo a área como a Mariana'); }
     else if (a === 'menu') { var on = menu.classList.toggle('on'); b.setAttribute('aria-expanded', on); }
+    else if (a === 'tema') { var nt = temaAtual() === 'escuro' ? 'claro' : 'escuro'; document.documentElement.dataset.tema = nt; try { localStorage.setItem('capi.tema', nt); } catch (er) { } var mt = document.querySelector('meta[name=theme-color]'); if (mt) mt.content = nt === 'escuro' ? '#0F0D0E' : '#F6F4F1'; render(); }
     else if (a === 'sair') { S = null; history.replaceState(null, '', '/app/'); render(true); }
     else if (a === 'fechaDias') { S.dias = false; salva(); render(); }
     else if (a === 'ckn') { ckRasc.n = +v; render(); var ck = $('#ck'); if (ck) ck.scrollIntoView({ block: 'nearest' }); }
