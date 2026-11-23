@@ -118,6 +118,7 @@ p{margin:0}
 .aviso svg{width:20px;height:20px;flex:none;margin-top:1px;color:var(--ouro)}
 .aviso b{color:var(--txt)}
 .etq{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--s3);color:var(--mut)}
+.etq svg{width:14px;height:14px;flex:none}
 .etq.ok{background:var(--okbg);color:var(--ok)}
 .etq.coral{background:rgba(204,68,82,.14);color:var(--coral-t)}
 
@@ -229,8 +230,8 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .player.tocando .play,.player.tocando .leg,.player.tocando > img{display:none}
 .player.tocando::after{display:none}
 .player .sem{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;padding:24px;background:rgba(22,8,16,.86)}
-.player .sem p{max-width:26rem;color:var(--mut)}
-.player .sem b{display:block;color:var(--txt);font-size:1.1rem;margin-bottom:6px}
+.player .sem p{max-width:26rem;color:rgba(255,255,255,.78)}
+.player .sem b{display:block;color:#fff;font-size:1.1rem;margin-bottom:6px}
 .aula-cab small{display:block;color:var(--mut);font-size:.86rem}
 .aula-cab h1{margin-top:6px;font-size:clamp(1.55rem,3vw + .6rem,2.3rem)}
 .acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
@@ -241,6 +242,8 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .abas{display:flex;gap:4px;margin-top:24px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 .abas button{flex:none;padding:12px 12px;border:0;background:none;cursor:pointer;color:var(--mut);font-weight:600;font-size:.94rem;border-bottom:2px solid transparent;margin-bottom:-1px}
 .abas button.on{color:var(--txt);border-color:var(--coral)}
+.abas .cu{display:none}
+@media (max-width:560px){.abas{gap:0}.abas button{flex:1;padding:12px 4px;font-size:.9rem}.abas .lg{display:none}.abas .cu{display:inline}}
 .painel-aba{padding-top:20px}
 .painel-aba .txt{color:var(--mut);max-width:44rem}
 .painel-aba .txt p+p{margin-top:12px}
@@ -249,12 +252,14 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .tarefa .q:first-child{margin-top:0}
 .tarefa label{display:block;font-weight:600;margin-bottom:4px}
 .tarefa .dica{display:block;font-size:.86rem;color:var(--fra);margin-bottom:8px}
-.salvo{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.85rem;color:var(--fra)}
+.salvo{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.85rem;line-height:1.2;color:var(--fra);white-space:nowrap}
+.salvo svg{width:14px;height:14px;flex:none}
 .salvo.on{color:var(--ok)}
 .mat{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:var(--s1);border:1px solid var(--line);text-decoration:none}
 .mat .mi{width:44px;height:44px;border-radius:12px;background:var(--bordo);display:grid;place-items:center;flex:none;color:var(--creme)}
 .mat .mi svg{width:20px;height:20px}
 .mat span{flex:1;min-width:0}
+.mat > svg{width:18px;height:18px;flex:none;color:var(--fra)}
 .mat small{display:block;color:var(--mut);font-size:.83rem}
 .ferr{margin-top:22px;padding:18px;border-radius:16px;background:var(--s2);border:1px solid var(--line2)}
 .ferr h3{margin-bottom:4px}

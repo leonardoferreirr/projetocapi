@@ -278,7 +278,7 @@
       k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da plataforma de pagamento', null, true));
     } else {
       k.appendChild(kpi('Começa em', t.comeca, 'faltam ' + t.faltam + ' dias'));
-      k.appendChild(kpi('Meta de exemplo', t.metaExemplo + ' matrículas', pc(t.mat / t.metaExemplo) + ' alcançado até agora'));
+      k.appendChild(kpi('Meta da turma', t.metaExemplo + ' matrículas', pc(t.mat / t.metaExemplo) + ' alcançado até agora'));
       k.appendChild(kpi('Por indicação', String(t.canais[4]), 'de participantes das turmas anteriores'));
       k.appendChild(kpi('Com presente de 50%', String(t.presentes), 'amigas de quem publicou depoimento'));
       k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da plataforma de pagamento', null, true));
@@ -392,7 +392,7 @@
     var trk = el('div', { cls: 'tr', role: 'img', 'aria-label': t.credUsados + ' de ' + tot + ' créditos usados' });
     var f = el('i'); f.style.width = (t.credUsados / tot * 100) + '%'; trk.appendChild(f);
     m.appendChild(trk);
-    m.appendChild(el('p', null, 'créditos usados (' + pc(t.credUsados / tot) + '). Inclui ' + t.indic + ' créditos extras por indicação, na regra de exemplo de 1 por amiga.'));
+    m.appendChild(el('p', null, 'créditos usados (' + pc(t.credUsados / tot) + '). Inclui ' + t.indic + ' créditos extras por indicação, 1 por amiga indicada.'));
     cr.appendChild(m);
     var mini = el('div', { cls: 'mini' });
     [['Base por participante', CREDITOS + ' créditos'], ['Média usada até agora', n1(t.credUsados / t.concl) + ' por pessoa'], ['Pedidos de créditos avulsos', String(t.avulsos)]].forEach(function (r) {

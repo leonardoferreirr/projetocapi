@@ -73,7 +73,7 @@
   function brl(v) { return (+v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }); }
   function num(v) { var n = parseFloat(String(v || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.')); return isFinite(n) ? n : 0; }
   function toast(t) { var el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('on'); }, 2800); }
-  function ic(n) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (I[n] || '') + '</svg>'; }
+  function ic(n) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (I[n] || '') + '</svg>'; }
   var I = {
     casa: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
     lista: '<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>',
@@ -119,12 +119,11 @@
     return '<main class="entrar"><div class="entrar-foto"><svg class="logo" viewBox="0 0 2852 1020" fill="currentColor" role="img" aria-label="Projeto C.A.P.I."><use href="#logo"/></svg>' +
       '<img src="/assets/img/hero-m.webp" srcset="/assets/img/hero-s.webp 480w, /assets/img/hero-m.webp 720w, /assets/img/hero-d.webp 1240w" sizes="(min-width: 980px) 54vw, 100vw" width="720" height="864" alt="" fetchpriority="high"></div>' +
       '<form class="entrar-box" id="fEntrar" novalidate><h1>Boas-vindas à sua área</h1><p class="mut">Entre para assistir aos módulos, fazer as tarefas e acompanhar a sua jornada.</p>' +
-      (mat ? '<div class="aviso" style="margin-top:18px">' + ic('info') + '<span><b>Compra simulada.</b> Na versão real, o acesso chega no seu e-mail logo depois do pagamento.</span></div>' : '') +
       '<label class="campo"><span>Seu nome</span><input class="inp" name="nome" autocomplete="name" required placeholder="Como você quer ser chamada"></label>' +
       '<label class="campo"><span>E-mail</span><input class="inp" name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@email.com"></label>' +
       '<button class="btn" type="submit">Entrar ' + ic('dir') + '</button><p class="ou">ou</p>' +
-      '<button class="btn sec" type="button" data-a="demo" style="width:100%">Ver como a Jéssika, já no módulo 4</button>' +
-      '<p class="rod">Protótipo: suas respostas ficam salvas só neste navegador. <a href="/">Voltar ao site</a></p></form></main>';
+      '<button class="btn sec" type="button" data-a="demo" style="width:100%">Entrar como Jéssika</button>' +
+      '<p class="rod"><a href="/">Voltar ao site</a></p></form></main>';
   }
 
   /* ---------- check-in ---------- */
@@ -205,11 +204,11 @@
     n = Math.max(1, Math.min(30, +n || 1));
     var m = MODS[n - 1], p = pilarDe(n), ok = disponivel(n), feito = !!S.done[n];
     var topo = ok ? '<div class="player" id="player" data-n="' + n + '"><img src="/assets/img/aula-' + p.img + '.webp" srcset="/assets/img/aula-' + p.img + '-s.webp 560w, /assets/img/aula-' + p.img + '.webp 960w" sizes="(min-width: 980px) 820px, 100vw" width="960" height="540" alt="" fetchpriority="high"><button class="play" data-a="play" aria-label="Assistir ao vídeo do módulo ' + n + '">' + ic('play') + '</button><span class="leg">Módulo ' + n + ' · ' + m.min + ' min</span></div>'
-      : '<div class="bloqueado"><div class="cad">' + ic('cad') + '</div><h2>Este módulo ainda não abriu</h2>' + (S.done[n - 1] ? '<p class="mut" style="margin-top:6px">Ele abre 24 horas depois da conclusão do módulo ' + (n - 1) + '.</p><p class="cont" data-cont="' + abreEm(n) + '">' + falta(abreEm(n)) + '</p><div class="btns"><button class="btn sec" data-a="liberar" data-v="' + n + '">Abrir agora (demonstração)</button></div>' : '<p class="mut" style="margin-top:6px">Conclua o módulo ' + (n - 1) + ' para começar a contagem de 24 horas.</p><div class="btns"><a class="btn" href="#/aula/' + atual() + '">Ir para o módulo ' + atual() + '</a></div>') + '</div>';
+      : '<div class="bloqueado"><div class="cad">' + ic('cad') + '</div><h2>Este módulo ainda não abriu</h2>' + (S.done[n - 1] ? '<p class="mut" style="margin-top:6px">Ele abre 24 horas depois da conclusão do módulo ' + (n - 1) + '.</p><p class="cont" data-cont="' + abreEm(n) + '">' + falta(abreEm(n)) + '</p><div class="btns"><button class="btn sec" data-a="liberar" data-v="' + n + '">Abrir agora</button></div>' : '<p class="mut" style="margin-top:6px">Conclua o módulo ' + (n - 1) + ' para começar a contagem de 24 horas.</p><div class="btns"><a class="btn" href="#/aula/' + atual() + '">Ir para o módulo ' + atual() + '</a></div>') + '</div>';
     var acoes = '<div class="acoes">' + (ok ? (feito ? '<span class="etq ok">' + ic('ok') + 'Concluído</span><button class="btn sec pq2" data-a="desfaz" data-v="' + n + '">Marcar como não concluído</button>' : '<button class="btn" data-a="concluir" data-v="' + n + '">' + ic('ok') + 'Concluir módulo</button>') : '') +
       '<div class="nav2"><a class="ib" href="#/aula/' + (n - 1) + '" aria-label="Módulo anterior"' + (n === 1 ? ' aria-disabled="true"' : '') + '>' + ic('esq') + '</a><a class="ib" href="#/aula/' + (n + 1) + '" aria-label="Próximo módulo"' + (n === 30 ? ' aria-disabled="true"' : '') + '>' + ic('dir') + '</a></div></div>';
-    var abas = [['sobre', 'Sobre o módulo'], ['tarefa', 'Tarefa do dia'], ['material', 'Material'], ['notas', 'Anotações']];
-    var corpoAba = ok ? '<div class="abas" role="tablist">' + abas.map(function (a) { return '<button role="tab" data-a="aba" data-v="' + a[0] + '" aria-selected="' + (aba === a[0]) + '" class="' + (aba === a[0] ? 'on' : '') + '">' + a[1] + '</button>'; }).join('') + '</div><div class="painel-aba" role="tabpanel">' + painelAba(n) + '</div>' : '';
+    var abas = [['sobre', 'Sobre o módulo', 'Sobre'], ['tarefa', 'Tarefa do dia', 'Tarefa'], ['material', 'Material', 'Material'], ['notas', 'Anotações', 'Notas']];
+    var corpoAba = ok ? '<div class="abas" role="tablist">' + abas.map(function (a) { return '<button role="tab" data-a="aba" data-v="' + a[0] + '" aria-selected="' + (aba === a[0]) + '" class="' + (aba === a[0] ? 'on' : '') + '"><span class="lg">' + a[1] + '</span><span class="cu">' + a[2] + '</span></button>'; }).join('') + '</div><div class="painel-aba" role="tabpanel">' + painelAba(n) + '</div>' : '';
     return '<div class="aula"><div><div style="margin-top:0">' + topo + '</div><div class="aula-cab" style="margin-top:20px"><small>Pilar ' + p.nome + ' · Módulo ' + n + ' de 30</small><h1>' + esc(m.t) + '</h1></div>' + acoes + corpoAba + '</div>' +
       '<aside class="lado" aria-label="Conteúdo do programa"><h2>Conteúdo do programa</h2>' + listaPilares(p.id) + '</aside></div>';
   }
@@ -227,14 +226,14 @@
         else campo = '<textarea class="inp" id="' + id + '" data-k="' + c.k + '">' + v + '</textarea>';
         return '<div class="q"><label for="' + id + '">' + esc(c.q) + '</label>' + (c.d ? '<span class="dica">' + esc(c.d) + '</span>' : '') + campo + '</div>';
       }).join('');
-      return '<div class="tarefa">' + (m.ferr ? ferramenta(m.ferr) : '') + '<div style="margin-top:' + (m.ferr ? '24px' : '0') + '">' + campos + '</div><span class="salvo" id="salvo">' + ic('ok') + 'As respostas salvam sozinhas</span></div>';
+      return '<div class="tarefa">' + (m.ferr ? ferramenta(m.ferr) : '') + '<div style="margin-top:' + (m.ferr ? '24px' : '0') + '">' + campos + '</div><span class="salvo" id="salvo">' + ic('ok') + '<span>As respostas salvam sozinhas</span></span></div>';
     }
     if (aba === 'material') {
       var url = MATERIAIS[n];
       return '<a class="mat" href="' + (url || '#') + '"' + (url ? ' target="_blank" rel="noopener"' : ' data-a="semMat"') + '><span class="mi">' + ic('doc') + '</span><span><b>' + esc(m.mat) + '</b><small>PDF para ler e guardar</small></span>' + ic('dir') + '</a>' +
         (m.ferr ? '<p class="mut pq" style="margin-top:14px">Este módulo também tem uma ferramenta prática, que fica na aba Tarefa do dia.</p>' : '');
     }
-    return '<label class="campo" style="margin-top:0"><span>Suas anotações sobre este módulo</span><textarea class="inp" data-nota="' + n + '" placeholder="Só você vê o que escrever aqui">' + esc(S.notas[n] || '') + '</textarea></label><span class="salvo" id="salvo">' + ic('ok') + 'Salvam sozinhas</span>';
+    return '<label class="campo" style="margin-top:0"><span>Suas anotações sobre este módulo</span><textarea class="inp" data-nota="' + n + '" placeholder="Só você vê o que escrever aqui">' + esc(S.notas[n] || '') + '</textarea></label><span class="salvo" id="salvo">' + ic('ok') + '<span>As anotações salvam sozinhas</span></span>';
   }
   function fv(k) { return esc(S.ans['f_' + k] || ''); }
   function ferramenta(t) {
@@ -263,7 +262,7 @@
     return '<div style="padding-top:26px"><h1>Conteúdo do programa</h1><p class="mut" style="margin-top:8px">30 módulos em quatro pilares. ' + (n ? 'Você está no módulo ' + n + '.' : 'Você concluiu todos.') + '</p></div>' + PIL.map(function (q) {
       var tot = q.ate - q.de + 1, fe = feitosPil(q), rows = '';
       for (var k = q.de; k <= q.ate; k++) rows += linhaMod(k);
-      return '<section class="bloco card" id="pilar-' + q.id + '"><div class="pil-cab"><img src="/assets/img/pilar-' + q.img + '.webp" width="420" height="630" alt="" loading="lazy"><div><small class="mut">Módulos ' + q.de + ' a ' + q.ate + '</small><h2 style="font-size:1.5rem;font-weight:400;margin-top:2px">' + q.id + ' · ' + q.nome + '</h2><p>' + q.desc + ' Você sai com: <b style="color:var(--txt)">' + q.sai + '</b>.</p><div class="barra"><i style="width:' + (fe / tot * 100) + '%"></i></div><small class="mut" style="display:block;margin-top:6px">' + fe + ' de ' + tot + ' concluídos</small></div></div><ul class="lista-mods">' + rows + '</ul></section>';
+      return '<section class="bloco card" id="pilar-' + q.id + '"><div class="pil-cab"><img src="/assets/img/pilar-' + q.img + '.webp" width="420" height="630" alt="" loading="lazy"><div><small class="mut">Módulos ' + q.de + ' a ' + q.ate + '</small><h2 style="font-size:1.4rem;margin-top:2px">' + q.nome + '</h2><p>' + q.desc + ' Você sai com: <b style="color:var(--txt)">' + q.sai + '</b>.</p><div class="barra"><i style="width:' + (fe / tot * 100) + '%"></i></div><small class="mut" style="display:block;margin-top:6px">' + fe + ' de ' + tot + ' concluídos</small></div></div><ul class="lista-mods">' + rows + '</ul></section>';
     }).join('');
   }
 
@@ -300,9 +299,8 @@
     var livres = slots().filter(function (s) { return !ids[s.id]; }).slice(0, 9), fim = feitos() === 30;
     var blocos = ''; for (var i = 0; i < 12; i++) blocos += '<i class="' + (i < S.creditos ? '' : 'u') + '"></i>';
     return '<div style="padding-top:26px"><h1>Encontros em grupo</h1><p class="mut" style="margin-top:8px;max-width:40rem">Depois de montar o plano, você não precisa colocá-lo em prática sozinha. Os encontros acontecem toda semana, em grupos fechados de até 20 mulheres, e servem para tirar dúvidas, revisar o plano e ajustar a rota.</p></div>' +
-      '<div class="bloco grade2" style="align-items:start"><div>' + (!fim ? '<div class="aviso" style="margin-bottom:16px">' + ic('info') + '<span>Na turma real, os créditos valem a partir da conclusão do módulo 30. <b>Nesta demonstração, o agendamento já está aberto.</b></span></div>' : '') +
-      (meus.length ? '<h2 style="margin-bottom:12px">Seus encontros</h2>' + meus.map(function (s) { return linhaSlot(s, true); }).join('') + '<div style="height:24px"></div>' : '') +
-      '<h2 style="margin-bottom:12px">Próximas datas</h2>' + livres.map(function (s) { return linhaSlot(s, false); }).join('') + '<p class="fra pq" style="margin-top:12px">Datas de exemplo. Cancelando com mais de 24 horas de antecedência, o crédito volta para você.</p></div>' +
+      '<div class="bloco grade2" style="align-items:start"><div>' + (meus.length ? '<h2 style="margin-bottom:12px">Seus encontros</h2>' + meus.map(function (s) { return linhaSlot(s, true); }).join('') + '<div style="height:24px"></div>' : '') +
+      '<h2 style="margin-bottom:12px">Próximas datas</h2>' + livres.map(function (s) { return linhaSlot(s, false); }).join('') + '<p class="fra pq" style="margin-top:12px">Cancelando com mais de 24 horas de antecedência, o crédito volta para você.</p></div>' +
       '<div><div class="card"><h2 style="font-size:1rem;color:var(--mut);font-weight:500">Seus créditos</h2><div class="cred" style="margin-top:8px"><b>' + S.creditos + '</b><span class="mut" style="padding-bottom:6px">de 12, válidos por um ano</span></div><div class="cred-blocos" aria-hidden="true">' + blocos + '</div><p class="mut pq" style="margin-top:14px">Um crédito vale um encontro. Se quiser continuar depois, dá para comprar créditos avulsos.</p></div>' +
       '<div class="card" style="margin-top:14px"><h2 style="font-size:1.1rem">Indicou, ganhou</h2><p class="mut pq" style="margin-top:6px">Cada amiga que entrar por sua indicação vale créditos extras. Contando a sua história publicamente, você ganha 50% de desconto para presentear uma amiga.</p><div class="btns" style="margin-top:14px"><button class="btn sec pq2" data-a="indica">' + ic('pres') + 'Copiar meu link de indicação</button></div></div></div></div>';
   }
@@ -315,7 +313,7 @@
     var media = hist.length ? (hist.reduce(function (a, c) { return a + c.n; }, 0) / hist.length) : 0;
     return '<div style="padding-top:26px"><h1>Bem-estar</h1><p class="mut" style="margin-top:8px;max-width:40rem">Um registro rápido por dia ajuda você a perceber como a ansiedade muda ao longo da jornada. Só você vê as suas respostas, a equipe recebe apenas números gerais e sem identificação.</p></div>' +
       '<div class="bloco grade2" style="align-items:start"><div>' + (S.ck[dkey()] ? '<div class="card ck">' + ckFeito(S.ck[dkey()]) + '</div>' : checkin(false)) +
-      '<div class="card" style="margin-top:14px"><h2 style="font-size:1.1rem">Seus últimos 14 dias</h2>' + grafico() + (hist.some(function (c) { return c.ex; }) ? '<p class="fra pq" style="margin-top:6px">Os dias anteriores são exemplos da demonstração.</p>' : '') + '</div></div>' +
+      '<div class="card" style="margin-top:14px"><h2 style="font-size:1.1rem">Seus últimos 14 dias</h2>' + grafico() + '</div></div>' +
       '<div><div class="card"><h2 style="font-size:1.1rem">Resumo</h2><div class="grade2" style="margin-top:14px;gap:10px;grid-template-columns:1fr 1fr"><div style="background:var(--s2);border-radius:14px;padding:14px"><b style="font-size:1.6rem;font-weight:300">' + (media ? media.toFixed(1).replace('.', ',') : '–') + '</b><small class="mut" style="display:block">média dos seus registros</small></div><div style="background:var(--s2);border-radius:14px;padding:14px"><b style="font-size:1.6rem;font-weight:300">' + hist.length + '</b><small class="mut" style="display:block">check-ins feitos</small></div></div>' +
       (top.length ? '<p class="mut pq" style="margin-top:14px">Sentimentos mais presentes: <b style="color:var(--txt)">' + top.join(', ') + '</b>.</p>' : '') + '<p class="mut pq" style="margin-top:12px">Na pesquisa que deu origem ao C.A.P.I., a ansiedade média de quem pensa em mudar de carreira foi 3,7 numa escala de 1 a 5.</p></div>' +
       '<div class="card sos" style="margin-top:14px"><h2 style="font-size:1.1rem">Precisa de ajuda agora?</h2><p class="mut pq" style="margin-top:6px">O C.A.P.I. é um programa educativo e não substitui a psicoterapia nem o atendimento de urgência.</p><a href="tel:188"><b class="n">188</b><span><b>CVV</b><br><small class="mut">Apoio emocional gratuito, 24 horas</small></span></a><a href="tel:192"><b class="n">192</b><span><b>SAMU</b><br><small class="mut">Emergências de saúde</small></span></a></div></div></div>';
@@ -341,7 +339,7 @@
       '<div class="card"><h2 style="font-size:1.1rem">Sua turma</h2><a class="mat" style="margin-top:12px" href="' + (LINK_GRUPO || '#') + '"' + (LINK_GRUPO ? ' target="_blank" rel="noopener"' : ' data-a="semGrupo"') + '><span class="mi">' + ic('chat') + '</span><span><b>Grupo da turma no WhatsApp</b><small>Troca entre participantes durante os 30 dias</small></span>' + ic('dir') + '</a><a class="mat" style="margin-top:8px" href="#" data-a="semGrupo"><span class="mi">' + ic('info') + '</span><span><b>Suporte operacional</b><small>Dúvidas de acesso e organização da jornada</small></span>' + ic('dir') + '</a></div>' +
       '<div class="card sos" style="margin-top:14px"><h2 style="font-size:1.1rem">Precisa de ajuda agora?</h2><p class="mut pq" style="margin-top:6px">Quando uma demanda vai além do caráter educativo do programa, a equipe acolhe, explica os limites e orienta a busca pela rede de apoio.</p><a href="tel:188"><b class="n">188</b><span><b>CVV</b><br><small class="mut">Apoio emocional gratuito, 24 horas</small></span></a><a href="tel:192"><b class="n">192</b><span><b>SAMU</b><br><small class="mut">Emergências de saúde</small></span></a><a href="tel:180"><b class="n">180</b><span><b>Central de Atendimento à Mulher</b><br><small class="mut">Orientação em casos de violência</small></span></a></div></div>' +
       '<div><div class="card"><h2 style="font-size:1.1rem">Minha conta</h2><label class="campo"><span>Nome</span><input class="inp" data-user="nome" value="' + esc(S.user.nome) + '"></label><label class="campo"><span>E-mail</span><input class="inp" type="email" data-user="email" value="' + esc(S.user.email) + '"></label><p class="mut pq" style="margin-top:12px">Turma de ' + esc(S.turma) + '.</p></div>' +
-      '<div class="card" style="margin-top:14px"><h2 style="font-size:1.1rem">Privacidade</h2><p class="mut pq" style="margin-top:6px">Neste protótipo, tudo o que você escreve fica salvo só neste navegador. Nada é enviado para servidores.</p><div class="btns" style="margin-top:14px"><button class="btn sec pq2" data-a="baixa">Baixar meus dados</button><button class="btn sec pq2" data-a="apaga">Apagar tudo e sair</button></div></div></div></div>';
+      '<div class="card" style="margin-top:14px"><h2 style="font-size:1.1rem">Privacidade</h2><p class="mut pq" style="margin-top:6px">Suas respostas são suas: ficam guardadas para montar o seu plano e não aparecem para outras participantes.</p><div class="btns" style="margin-top:14px"><button class="btn sec pq2" data-a="baixa">Baixar meus dados</button><button class="btn sec pq2" data-a="apaga">Apagar tudo e sair</button></div></div></div></div>';
   }
 
   /* ---------- render ---------- */
@@ -379,7 +377,7 @@
     if (menu && menu.classList.contains('on') && !e.target.closest('#menuav') && !(b && b.dataset.a === 'menu')) { menu.classList.remove('on'); }
     if (!b) return;
     var a = b.dataset.a, v = b.dataset.v;
-    if (a === 'demo') { S = demo(); salva(); history.replaceState(null, '', '/app/#/inicio'); render(true); toast('Você está vendo a área como a Jéssika'); }
+    if (a === 'demo') { S = demo(); salva(); history.replaceState(null, '', '/app/#/inicio'); render(true); }
     else if (a === 'menu') { var on = menu.classList.toggle('on'); b.setAttribute('aria-expanded', on); }
     else if (a === 'tema') { var nt = temaAtual() === 'escuro' ? 'claro' : 'escuro'; document.documentElement.dataset.tema = nt; try { localStorage.setItem('capi.tema', nt); } catch (er) { } var mt = document.querySelector('meta[name=theme-color]'); if (mt) mt.content = nt === 'escuro' ? '#0F0D0E' : '#F6F4F1'; render(); }
     else if (a === 'sair') { S = null; history.replaceState(null, '', '/app/'); render(true); }
@@ -393,7 +391,7 @@
       if (src) pl.classList.add('tocando');
       if (src && /youtu/.test(src)) pl.insertAdjacentHTML('beforeend', '<iframe src="' + src + '" title="Vídeo do módulo ' + n + '" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>');
       else if (src) pl.insertAdjacentHTML('beforeend', '<video src="' + src + '" controls autoplay playsinline preload="auto"><track kind="captions" srclang="pt-BR" label="Português" src="/assets/video/aula-01.vtt"></video>');
-      else pl.insertAdjacentHTML('beforeend', '<div class="sem"><div><b>O vídeo deste módulo entra aqui</b><p>Nesta demonstração, só a primeira aula tem vídeo. O roteiro e a tarefa do módulo já estão nas abas abaixo.</p></div></div>');
+      else pl.insertAdjacentHTML('beforeend', '<div class="sem"><div><b>O vídeo deste módulo chega em breve</b><p>O roteiro e a tarefa do módulo já estão nas abas abaixo.</p></div></div>');
     }
     else if (a === 'concluir') {
       var k = +v; S.done[k] = Date.now(); salva(); aba = 'sobre';
@@ -401,7 +399,7 @@
       render(); toast('Módulo ' + k + ' concluído. O próximo abre em 24 horas.');
     }
     else if (a === 'desfaz') { var j = +v; for (var q = j; q <= 30; q++) { delete S.done[q]; delete S.lib[q]; } salva(); render(); }
-    else if (a === 'liberar') { S.lib[+v] = true; salva(); render(); toast('Módulo aberto para a demonstração'); }
+    else if (a === 'liberar') { S.lib[+v] = true; salva(); render(); toast('Módulo aberto'); }
     else if (a === 'agenda') {
       if (S.creditos < 1) return;
       var sl = slots().filter(function (s) { return s.id == v; })[0]; if (!sl) return;
@@ -413,8 +411,8 @@
       if (navigator.clipboard) navigator.clipboard.writeText(link).then(function () { toast('Link copiado: ' + link); }, function () { toast(link); }); else toast(link);
     }
     else if (a === 'imprime') { window.print(); }
-    else if (a === 'semMat') { e.preventDefault(); toast('Nesta demonstração, só o material do módulo 1 está disponível'); }
-    else if (a === 'semGrupo') { e.preventDefault(); toast('Na versão real, este botão abre o grupo da sua turma'); }
+    else if (a === 'semMat') { e.preventDefault(); toast('O material deste módulo chega em breve'); }
+    else if (a === 'semGrupo') { e.preventDefault(); toast('O link do grupo da turma chega em breve'); }
     else if (a === 'baixa') {
       var blob = new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' }), u = URL.createObjectURL(blob), l = document.createElement('a');
       l.href = u; l.download = 'meus-dados-capi.json'; l.click(); setTimeout(function () { URL.revokeObjectURL(u); }, 1000);
