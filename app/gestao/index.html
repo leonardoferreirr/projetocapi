@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel da equipe | Projeto C.A.P.I.</title>
+<meta name="description" content="Painel de gestão das turmas do Projeto C.A.P.I.: matrículas, jornada de 30 dias, bem-estar, encontros e captação. Dados de demonstração.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FDF7E8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/jakarta-var.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className='js'</script>
+<style>
+@font-face{font-family:'Jakarta';src:url('/assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-display:optional}
+@font-face{font-family:'JakartaFB';src:local('Arial'),local('Helvetica Neue'),local('Liberation Sans');size-adjust:105%}
+:root{
+  --coral:#CC4452;--coral-600:#B53A47;--bordo:#723147;--bordo-800:#5A2438;--bordo-900:#3F1827;--bordo-950:#2A0F1A;
+  --creme:#F8E5AD;--creme-200:#FBEFCB;--papel:#FDF7E8;--papel-2:#F9EDD2;
+  --ink:#3B1724;--muted:#7A5562;--line:rgba(114,49,71,.14);--line-c:rgba(248,229,173,.22);
+  --sans:'Jakarta','JakartaFB',Arial,sans-serif;--r:22px;--wrap:1240px;--hh:64px;
+  --card:#FFFDF6;--grid:#EFE3CC;--axis:#D9C7A8;--track:#F1E2E5;
+  --ok:#2F7D5B;--atencao:#C99232;--alerta:#CC4452;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--ink);background:var(--papel);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(1.7rem,3vw + .8rem,2.6rem);font-weight:300}
+h2{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:16px}
+@media (min-width:700px){.wrap{padding-inline:28px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px;border-radius:6px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* topo */
+.top{position:sticky;top:0;z-index:30;height:var(--hh);background:rgba(253,247,232,.92);border-bottom:1px solid var(--line)}
+@supports (backdrop-filter:blur(8px)){.top{background:rgba(253,247,232,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
+.top-in{height:100%;display:flex;align-items:center;gap:14px}
+.brand{display:block;width:92px;color:var(--bordo);flex:none}
+.brand svg{display:block;width:100%;height:auto}
+.top-tit{font-size:.92rem;font-weight:600;color:var(--bordo);padding-left:14px;border-left:1px solid var(--line);white-space:nowrap}
+.top-links{margin-left:auto;display:flex;gap:6px}
+.top-links a{text-decoration:none;font-size:.88rem;font-weight:600;color:var(--bordo);padding:9px 12px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.top-links a:hover{background:var(--papel-2)}
+.top-links .so-largo{display:none}
+@media (min-width:640px){.top-links .so-largo{display:inline-block}.brand{width:104px}}
+@media (max-width:420px){.top-tit{display:none}}
+
+/* cabeçalho da página e filtro */
+.cab{padding-top:28px;padding-bottom:8px}
+.cab p.sub{margin-top:8px;color:var(--muted);max-width:44rem}
+.demo{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.8rem;font-weight:600;color:var(--muted);background:var(--papel-2);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+.demo svg{width:14px;height:14px}
+.filtro{position:sticky;top:var(--hh);z-index:20;background:var(--papel);padding:12px 0 14px;border-bottom:1px solid var(--line)}
+.filtro-in{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filtro label{font-size:.85rem;font-weight:600;color:var(--muted)}
+.seg{display:flex;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;font:600 .88rem/1 var(--sans);color:var(--muted);background:transparent;border:0;border-radius:10px;padding:10px 12px;cursor:pointer;white-space:nowrap}
+.seg button small{display:block;margin-top:3px;font-size:.7rem;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--bordo);color:var(--creme)}
+.seg button:not([aria-pressed="true"]):hover{background:var(--papel-2);color:var(--bordo)}
+.estado{font-size:.88rem;color:var(--muted)}
+@media (max-width:520px){.filtro-in{gap:8px}.seg{width:100%}.seg button{flex:1;padding:9px 6px;font-size:.8rem}.seg button small{font-size:.64rem}}
+.estado b{color:var(--ink);font-weight:600}
+
+/* blocos */
+main{padding-bottom:64px}
+.bloco{margin-top:28px}
+.bloco > h2{margin-bottom:12px}
+.bloco > p.nota{margin:-6px 0 14px;color:var(--muted);font-size:.92rem;max-width:46rem}
+.grid{display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 16px}
+@media (min-width:700px){.card{padding:22px 22px}}
+.card h3{font-size:1rem;font-weight:600;color:var(--ink)}
+.card .sub{margin-top:3px;font-size:.85rem;color:var(--muted)}
+.ver-tab{margin-top:12px;font-size:.85rem}
+.ver-tab summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
+.ver-tab summary::-webkit-details-marker{display:none}
+.ver-tab summary::before{content:"+ ";}
+.ver-tab[open] summary::before{content:"− ";}
+.ver-tab table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.85rem}
+.ver-tab th,.ver-tab td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+.ver-tab td.r,.ver-tab th.r{text-align:right;font-variant-numeric:tabular-nums}
+
+/* resumo */
+.resumo{display:grid;gap:14px}
+.hero-card{background:var(--bordo);color:var(--creme);border:0}
+.hero-card .lab{font-size:.92rem;color:rgba(248,229,173,.8)}
+.hero-card .val{display:block;margin-top:6px;font-size:clamp(3.2rem,9vw,4.6rem);font-weight:300;letter-spacing:-.04em;line-height:1}
+.hero-card .det{margin-top:12px;font-size:.92rem;color:rgba(248,229,173,.82)}
+.hero-card .det b{color:var(--creme);font-weight:600}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi .lab{font-size:.82rem;color:var(--muted);line-height:1.3}
+.kpi .val{font-size:1.55rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;color:var(--bordo);overflow-wrap:anywhere}
+.kpi .det{font-size:.78rem;color:var(--muted);line-height:1.35}
+.kpi.largo{grid-column:1/-1}
+.kpi .st{white-space:normal}
+@media (min-width:980px){.resumo{grid-template-columns:4fr 8fr}.kpis{grid-template-columns:repeat(3,1fr)}.kpi .val{font-size:1.8rem}.kpi.largo{grid-column:span 2}}
+
+/* status */
+.st{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;color:var(--ink);white-space:nowrap}
+.st svg{width:15px;height:15px;flex:none}
+.st.ok svg{color:var(--ok)}.st.atencao svg{color:var(--atencao)}.st.alerta svg{color:var(--alerta)}
+
+/* gráficos */
+.chart{position:relative;margin-top:14px;width:100%}
+.chart svg{display:block;overflow:visible}
+.chart text{font-family:var(--sans);font-size:11px;fill:var(--muted)}
+.chart .tick{font-variant-numeric:tabular-nums}
+.hit{fill:transparent;cursor:default}
+.hit:focus{outline:none}
+.hit:focus + .mk,.mk.hov{opacity:.78}
+.hb{display:grid;grid-template-columns:minmax(96px,34%) 1fr auto;align-items:center;gap:10px;padding:7px 0;font-size:.9rem;cursor:default}
+.hb + .hb{border-top:1px solid var(--grid)}
+.hb .nm{color:var(--ink);line-height:1.25}
+.hb .tr{position:relative;height:14px}
+.hb .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--bordo);border-radius:0 4px 4px 0;min-width:2px}
+.hb .tr i.dest{background:var(--coral)}
+.hb .v{font-weight:600;font-variant-numeric:tabular-nums;min-width:3.4em;text-align:right}
+.hb:hover .tr i,.hb:focus-visible .tr i{opacity:.8}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:.8rem;color:var(--muted)}
+.legenda span{display:inline-flex;align-items:center;gap:6px}
+.legenda i{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--bordo)}
+.legenda i.lin{height:2px;border-radius:0}
+.legenda i.tra{width:18px;height:0;border-top:2px dashed var(--muted);background:none}
+.legenda i.cor{background:var(--coral)}
+
+#tt{position:fixed;z-index:60;pointer-events:none;background:var(--bordo-950);color:var(--creme);border-radius:12px;padding:9px 12px;font-size:.82rem;line-height:1.35;box-shadow:0 12px 30px -12px rgba(42,15,26,.5);opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;max-width:240px}
+#tt.on{opacity:1;transform:none}
+#tt b{display:block;font-size:1rem;font-weight:700}
+#tt span{display:block;color:rgba(248,229,173,.78)}
+
+/* jornada */
+.etapas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.etapa{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--papel)}
+.etapa b{display:block;font-size:1.3rem;font-weight:600;color:var(--bordo)}
+.etapa span{font-size:.8rem;color:var(--muted);line-height:1.3;display:block}
+@media (max-width:699px){.etapa:last-child{grid-column:1/-1}}
+@media (min-width:700px){.etapas{grid-template-columns:repeat(5,1fr)}}
+
+/* bem-estar */
+.be{display:grid;gap:14px}
+@media (min-width:980px){.be{grid-template-columns:7fr 5fr}}
+.acolhe{margin-top:14px;display:flex;gap:12px;align-items:flex-start;background:#FBEDEE;border-radius:14px;padding:12px 14px;font-size:.88rem}
+.acolhe svg{width:20px;height:20px;flex:none;color:var(--alerta);margin-top:1px}
+.acolhe b{font-weight:600}
+.lgpd{margin-top:12px;font-size:.8rem;color:var(--muted)}
+
+/* encontros */
+.enc{display:grid;gap:14px}
+@media (min-width:980px){.enc{grid-template-columns:8fr 4fr}}
+.agenda{list-style:none;margin:14px 0 0;padding:0}
+.ag{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--grid)}
+.ag:first-child{border-top:0}
+.ag .dia{align-self:start;border-radius:12px;background:var(--papel-2);text-align:center;padding:8px 4px;line-height:1.1}
+.ag .dia b{display:block;font-size:1.25rem;font-weight:700;color:var(--bordo)}
+.ag .dia span{font-size:.72rem;color:var(--muted);text-transform:capitalize}
+.ag .inf{min-width:0}
+.ag .l1{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;align-items:baseline}
+.ag .l1 b{font-weight:600}
+.ag .l2{font-size:.84rem;color:var(--muted)}
+.ag .occ{display:flex;align-items:center;gap:10px;margin-top:8px}
+.ag .occ .tr{flex:1;height:8px;border-radius:99px;background:var(--track);position:relative;overflow:hidden}
+.ag .occ .tr i{position:absolute;inset:0 auto 0 0;background:var(--bordo);border-radius:99px}
+.ag .occ .v{font-size:.84rem;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ag.destaque .dia{background:var(--creme)}
+.ag.fora{opacity:.55}
+.meter{margin-top:14px}
+.meter .tr{height:12px;border-radius:99px;background:var(--track);overflow:hidden}
+.meter .tr i{display:block;height:100%;background:var(--bordo);border-radius:99px}
+.meter .big{display:block;margin-bottom:10px;font-size:2rem;font-weight:600;color:var(--bordo);letter-spacing:-.02em;line-height:1.1}
+.meter p{margin-top:6px;font-size:.85rem;color:var(--muted)}
+.mini{margin-top:16px;display:grid;gap:10px}
+.mini div{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;padding-top:10px;border-top:1px solid var(--grid)}
+.mini div b{font-variant-numeric:tabular-nums}
+
+/* captação e receita */
+.cap{display:grid;gap:14px}
+@media (min-width:980px){.cap{grid-template-columns:1fr 1fr}}
+.receitas{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:700px){.receitas{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.receitas{grid-template-columns:repeat(4,1fr)}}
+.rec{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--card)}
+.rec .lab{font-size:.85rem;color:var(--muted)}
+.rec .val{display:block;margin-top:4px;font-size:1.4rem;font-weight:600;color:var(--bordo);letter-spacing:-.02em}
+.rec .val.fraco{color:var(--muted);font-weight:500;font-size:1.1rem}
+.rec .det{margin-top:6px;font-size:.8rem;color:var(--muted)}
+
+/* riscos */
+.riscos{display:grid;gap:12px}
+@media (min-width:860px){.riscos{grid-template-columns:repeat(3,1fr)}}
+.risco h3{display:flex;align-items:center;gap:8px}
+.risco h3 svg{width:18px;height:18px;color:var(--atencao);flex:none}
+.risco p{margin-top:8px;font-size:.9rem;color:var(--muted)}
+.risco .agora{margin-top:10px;font-size:.88rem;color:var(--ink)}
+
+.vazio{margin-top:14px;padding:18px;border-radius:14px;background:var(--papel-2);color:var(--muted);font-size:.92rem}
+.rodape{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.rodape p + p{margin-top:8px}
+.carregando{opacity:.55;transition:opacity .2s}
+/* o conteúdo é montado pelo script: fica oculto até lá para não pular na tela (com reserva de 2,5 s se o script falhar) */
+.js #conteudo{visibility:hidden;animation:mostra 0s 2.5s forwards}
+.js #conteudo.pronto{visibility:visible;animation:none}
+@keyframes mostra{to{visibility:visible}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}*:not(#conteudo){animation:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 2852 1020"><g transform="translate(0.000000,1020.000000) scale(0.100000,-0.100000)"><path d="M10235 10113 c-152 -15 -278 -72 -331 -148 -74 -107 -98 -219 -102 -495 l-4 -225 18 -100 c9 -55 26 -117 36 -137 10 -21 18 -44 18 -51 0 -26 78 -112 122 -134 128 -65 292 -89 448 -64 93 15 208 69 251 119 38 43 99 170 99 205 0 13 7 68 15 123 17 114 19 348 4 444 -5 36 -12 83 -15 105 -10 70 -55 183 -91 225 -79 92 -289 152 -468 133z m190 -277 c120 -29 153 -104 159 -366 9 -366 -48 -460 -277 -460 -151 0 -210 38 -249 163 l-23 72 0 200 0 200 24 63 c42 111 89 139 236 141 39 0 97 -6 130 -13z M27805 10116 c-5 -2 -44 -10 -85 -17 -101 -17 -191 -61 -240 -117 -47 -53 -90 -142 -90 -187 0 -17 -7 -54 -15 -81 -10 -35 -15 -106 -16 -249 -3 -398 51 -564 215 -655 l71 -38 115 -13 c272 -29 469 37 534 182 16 35 33 73 39 84 18 34 47 265 47 380 0 139 -25 374 -46 440 -19 56 -72 155 -84 155 -4 0 -24 13 -45 30 -55 44 -177 79 -293 85 -53 3 -101 3 -107 1z m238 -304 c46 -33 56 -49 83 -137 l19 -60 0 -175 0 -175 -19 -78 c-34 -133 -96 -177 -249 -177 -155 0 -230 44 -263 153 l-19 62 0 205 0 205 19 62 c24 75 76 132 133 144 21 4 87 7 146 5 l109 -4 41 -30z M955 10074 l-15 -15 1 -612 c0 -382 4 -624 10 -644 l11 -33 87 0 88 0 16 18 17 19 0 161 0 161 16 15 15 16 184 0 c250 0 325 22 400 118 61 77 85 179 85 356 l0 133 -23 74 c-35 109 -60 152 -109 185 -79 53 -106 57 -450 60 l-318 3 -15 -15z m625 -259 c44 -40 54 -74 55 -180 l0 -101 -26 -49 c-20 -40 -33 -53 -63 -63 -40 -13 -318 -18 -348 -7 -23 9 -28 49 -28 231 l0 163 17 16 16 17 177 -4 178 -3 22 -20z M5440 10083 c-19 -3 -38 -10 -42 -16 -12 -19 -10 -1255 2 -1278 l11 -19 89 0 90 0 14 23 c12 17 14 59 13 205 -2 135 1 186 10 194 15 12 249 11 272 -2 10 -5 26 -28 36 -52 10 -24 36 -80 57 -126 21 -46 38 -85 38 -88 0 -3 14 -34 30 -70 36 -77 50 -84 160 -84 131 0 132 2 59 157 -28 60 -62 133 -76 163 -14 30 -35 74 -46 96 l-21 42 17 25 c9 14 29 33 45 42 32 20 71 72 90 124 16 44 41 224 36 266 -16 148 -28 204 -55 257 -16 32 -34 58 -39 58 -5 0 -20 11 -33 25 -45 49 -104 57 -427 60 -162 2 -311 1 -330 -2z m592 -268 c42 -31 58 -77 57 -158 -1 -108 -16 -146 -69 -179 l-45 -27 -163 -2 c-130 -1 -166 1 -178 12 -21 21 -25 339 -5 363 l14 17 181 -3 181 -3 27 -20z M14919 10074 l-14 -17 -1 -412 c-1 -419 -3 -454 -30 -537 -22 -68 -57 -90 -154 -96 l-76 -4 -43 21 c-61 32 -83 85 -89 219 l-5 103 -20 11 c-21 11 -177 5 -197 -7 -25 -15 7 -325 42 -405 35 -81 42 -92 86 -126 71 -54 127 -67 292 -68 l145 -1 77 38 c110 55 159 126 178 263 7 44 14 279 17 535 l5 457 -19 19 -19 19 -81 2 -80 2 -14 -16z M18707 10078 c-9 -5 -12 -159 -12 -643 l1 -637 19 -14 19 -14 372 0 373 0 15 16 c23 23 23 206 0 229 l-17 16 -262 -2 c-206 -2 -267 0 -279 10 l-16 13 0 129 c0 91 4 130 12 135 7 5 117 7 244 6 l231 -3 12 15 c16 19 12 175 -5 203 l-14 22 -230 3 -231 3 -9 15 c-5 8 -10 65 -10 127 l0 112 19 11 c12 6 114 10 261 10 147 0 249 4 261 10 l19 11 0 98 0 99 -16 13 -17 14 -364 0 c-200 0 -370 -3 -376 -7z M22959 10069 c-5 -10 -9 -65 -9 -123 l0 -105 22 -12 c15 -8 65 -10 173 -4 l151 7 14 -16 c10 -13 13 -119 16 -517 2 -365 6 -504 15 -515 8 -10 36 -14 104 -14 l93 0 8 18 c4 9 9 245 10 524 1 279 6 512 10 519 5 8 31 10 88 5 44 -3 115 -9 156 -12 45 -4 86 -1 103 5 l28 11 -3 117 -3 117 -35 8 c-19 4 -237 7 -483 6 l-448 -2 -10 -17z M3555 7814 c-214 -7 -536 -26 -600 -35 -38 -5 -130 -13 -203 -19 -74 -5 -151 -14 -171 -20 -21 -5 -76 -14 -122 -19 -147 -17 -393 -72 -685 -155 -28 -8 -60 -19 -70 -25 -11 -6 -37 -17 -59 -25 -58 -20 -217 -85 -235 -96 -8 -5 -49 -28 -90 -51 -226 -126 -492 -339 -580 -464 -15 -22 -44 -57 -64 -77 -20 -20 -36 -41 -36 -47 0 -5 -11 -22 -24 -38 -27 -32 -146 -237 -146 -251 0 -5 -7 -15 -15 -22 -8 -7 -15 -20 -15 -29 0 -9 -20 -61 -45 -115 -25 -55 -45 -106 -45 -115 -1 -9 -9 -34 -20 -56 -11 -22 -19 -46 -20 -53 0 -13 -29 -121 -51 -190 -47 -147 -121 -618 -144 -912 -14 -176 -35 -810 -35 -1038 0 -261 24 -912 40 -1072 23 -234 42 -386 55 -451 8 -39 15 -84 15 -100 0 -48 66 -320 120 -494 12 -38 28 -89 34 -112 7 -24 17 -48 24 -55 7 -7 12 -17 12 -24 0 -23 118 -277 155 -334 13 -19 36 -55 51 -79 16 -24 43 -66 61 -94 17 -27 49 -70 70 -95 56 -66 253 -261 289 -286 271 -186 411 -263 629 -346 33 -12 67 -26 75 -29 8 -4 74 -24 145 -45 72 -20 144 -42 160 -48 17 -5 54 -14 82 -18 51 -8 144 -27 267 -56 33 -7 107 -18 165 -24 58 -6 120 -15 136 -20 17 -5 71 -12 120 -15 50 -4 162 -13 250 -21 244 -23 875 -33 1383 -24 249 5 457 12 463 16 6 3 114 12 241 20 126 8 247 18 267 24 21 5 81 14 135 20 106 11 233 32 336 55 36 9 97 22 135 30 97 20 154 35 193 51 18 8 41 14 52 14 36 0 296 98 406 153 131 66 264 143 315 183 20 16 51 40 69 54 111 83 270 254 341 365 106 165 151 260 238 500 33 89 101 362 101 404 0 16 7 62 15 102 8 39 22 144 31 233 8 88 19 202 24 251 12 109 13 555 2 572 -11 18 -104 22 -727 34 -302 6 -579 11 -614 12 -37 1 -71 -3 -81 -10 l-18 -13 -6 -112 c-24 -389 -60 -579 -143 -753 -88 -182 -257 -332 -473 -420 -36 -15 -83 -35 -105 -45 -37 -16 -66 -25 -240 -66 -136 -33 -400 -64 -740 -90 -261 -19 -1171 -16 -1360 5 -397 43 -589 77 -743 131 -48 17 -105 36 -127 42 -22 6 -45 15 -51 20 -6 4 -42 24 -80 44 -64 34 -102 59 -188 124 -78 59 -224 241 -265 330 -35 76 -111 281 -111 299 0 9 -7 41 -15 71 -9 30 -20 84 -25 120 -5 36 -14 88 -19 115 -61 318 -61 1519 0 1920 26 167 23 154 53 265 77 289 152 433 314 607 70 74 335 243 382 243 10 0 22 4 25 10 3 5 32 17 63 26 31 9 91 27 132 41 108 35 262 61 585 99 176 21 1167 31 1400 15 625 -43 903 -100 1199 -243 206 -99 376 -299 442 -518 37 -126 64 -311 73 -514 7 -161 13 -212 24 -224 l15 -14 174 1 c222 2 808 19 1052 30 142 6 190 12 197 22 16 24 -17 740 -42 909 -5 36 -14 101 -20 145 -55 420 -183 771 -381 1050 -180 255 -439 457 -748 586 -30 12 -62 28 -70 35 -8 7 -28 15 -45 19 -16 4 -52 15 -80 25 -85 30 -178 58 -215 65 -19 4 -53 13 -75 20 -47 16 -203 51 -295 65 -206 34 -384 59 -450 65 -41 3 -136 13 -210 21 -74 8 -223 19 -330 24 -196 10 -1096 20 -1265 14z M11680 7503 c-14 -2 -31 -12 -37 -21 -17 -21 -19 -1442 -3 -1473 l11 -19 1337 0 c1027 0 1341 3 1350 12 9 9 12 189 12 749 l0 737 -13 11 c-13 10 -2596 15 -2657 4z M18230 7497 l-25 -13 -2 -3684 c-2 -2027 1 -3691 5 -3698 10 -15 1450 -18 1465 -3 5 5 8 483 7 1069 l-1 1061 23 6 c13 2 781 6 1708 8 l1685 4 155 16 c273 30 333 37 440 51 146 21 399 78 510 117 30 10 75 26 100 34 121 42 301 134 427 219 194 130 334 281 471 506 64 106 171 367 193 468 5 24 11 48 15 53 11 19 46 216 60 344 8 72 19 150 24 175 37 171 37 1054 0 1335 -11 83 -20 167 -20 187 0 34 -15 106 -56 278 -9 36 -20 81 -24 100 -5 19 -23 73 -40 120 -17 47 -35 98 -40 113 -27 83 -125 257 -226 397 -38 54 -169 182 -248 245 -162 127 -364 233 -596 310 -131 44 -224 67 -420 104 -124 24 -308 45 -590 68 l-205 17 -2385 3 -2385 3 -25 -13z m4910 -1516 c14 -8 54 -18 90 -21 119 -13 204 -38 335 -100 207 -98 333 -247 380 -450 9 -41 21 -88 27 -105 23 -73 37 -355 27 -544 -9 -182 -14 -219 -42 -351 -44 -201 -147 -362 -286 -447 -112 -68 -225 -114 -344 -139 -67 -14 -142 -30 -167 -35 -25 -5 -103 -14 -175 -19 -160 -12 -3275 -13 -3293 -1 l-13 8 1 1104 c0 858 3 1105 13 1111 6 5 779 7 1717 6 l1705 -3 25 -14z M27000 7503 c-14 -3 -29 -8 -33 -12 -7 -7 -11 -7390 -4 -7397 5 -6 1458 -7 1463 -2 11 11 5 7390 -6 7403 l-11 13 -692 0 c-381 0 -703 -2 -717 -5z M10666 5584 l-16 -15 0 -723 0 -722 14 -20 14 -19 2325 0 c1279 0 2329 4 2334 8 4 5 9 339 11 742 l2 733 -15 16 -16 16 -2319 0 -2319 0 -15 -16z M9697 3678 l-17 -13 0 -729 -1 -729 17 -18 17 -19 3282 0 3282 1 19 13 19 14 0 729 c0 400 -3 736 -7 746 l-7 17 -3294 0 c-2619 0 -3297 -3 -3310 -12z M8712 1774 l-22 -15 0 -728 0 -729 13 -11 c15 -12 8549 -17 8580 -5 l17 6 2 687 c3 772 3 778 -13 797 l-11 14 -4272 0 -4272 0 -22 -16z"/></g></symbol><symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-atencao" viewBox="0 0 24 24"><path d="M12 2.8 22.4 20.5H1.6z" fill="currentColor"/><path d="M12 9v5.2M12 17.2v.3" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></symbol><symbol id="i-alerta" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M12 7v6M12 16.5v.3" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol></svg>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/" aria-label="Projeto C.A.P.I., site"><svg viewBox="0 0 2852 1020" fill="currentColor" role="img" aria-label="Projeto C.A.P.I."><use href="#logo"/></svg></a>
+    <span class="top-tit">Painel da equipe</span>
+    <nav class="top-links" aria-label="Atalhos"><a href="/app/">Área da aluna</a><a class="so-largo" href="/">Site</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap cab">
+    <h1>Painel da equipe</h1>
+    <p class="sub">Como cada turma está indo nos 30 dias, no bem-estar, nos encontros e na captação. Os dados de bem-estar aparecem sempre somados e sem nomes.</p>
+    <span class="demo"><svg aria-hidden="true"><use href="#i-info"/></svg>Dados de demonstração</span>
+  </div>
+
+  <div class="filtro">
+    <div class="wrap filtro-in">
+      <label id="lab-turma">Turma</label>
+      <div class="seg" role="group" aria-labelledby="lab-turma" id="turmas"></div>
+      <p class="estado" id="estado" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="wrap" id="conteudo">
+    <section class="bloco" aria-labelledby="t-resumo">
+      <h2 id="t-resumo" class="sr">Resumo da turma</h2>
+      <div class="resumo">
+        <div class="card hero-card"><span class="lab" id="hero-lab">Matrículas da turma</span><b class="val" id="hero-val">57</b><p class="det" id="hero-det"></p></div>
+        <div class="kpis" id="kpis"></div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-jornada">
+      <h2 id="t-jornada">Jornada de 30 dias</h2>
+      <div class="card">
+        <h3 id="jor-tit">Onde cada participante está</h3>
+        <p class="sub" id="jor-sub"></p>
+        <div class="chart" id="c-jornada"></div>
+        <div class="etapas" id="etapas"></div>
+        <details class="ver-tab"><summary>Ver dados em tabela</summary><div id="tab-jornada"></div></details>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-be">
+      <h2 id="t-be">Bem-estar</h2>
+      <p class="nota">Check-in diário de ansiedade, de 1 (nenhuma) a 5 (muito intensa), a mesma escala da pesquisa do PGE 1, em que a média foi 3,7.</p>
+      <div class="be">
+        <div class="card">
+          <h3>Ansiedade média por dia da jornada</h3>
+          <p class="sub" id="be-sub"></p>
+          <div class="chart" id="c-be"></div>
+          <div class="legenda"><span><i class="lin"></i>Média da turma</span><span><i class="tra"></i>Linha de base da pesquisa (3,7)</span></div>
+          <details class="ver-tab"><summary>Ver dados em tabela</summary><div id="tab-be"></div></details>
+        </div>
+        <div class="card">
+          <h3>Sentimentos marcados nos últimos 7 dias</h3>
+          <p class="sub">Parte dos check-ins em que cada sentimento apareceu. Cada pessoa pode marcar mais de um.</p>
+          <div class="chart" id="c-sent"></div>
+          <div id="acolhe"></div>
+          <p class="lgpd">Nenhuma resposta individual aparece aqui. Os números são agregados da turma, como pede a LGPD.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-enc">
+      <h2 id="t-enc">Encontros de acompanhamento</h2>
+      <p class="nota">Grupos fechados de até 20 participantes, conduzidos em rodízio pela equipe. Cada participante tem 12 créditos para usar ao longo de um ano depois do módulo 30.</p>
+      <div class="enc">
+        <div class="card">
+          <h3>Agenda da semana</h3>
+          <p class="sub" id="ag-sub">De 23 a 28 de novembro, todas as turmas em acompanhamento</p>
+          <ul class="agenda" id="agenda"></ul>
+        </div>
+        <div class="card">
+          <h3>Créditos da turma</h3>
+          <p class="sub" id="cred-sub"></p>
+          <div id="creditos"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-cap">
+      <h2 id="t-cap">Captação</h2>
+      <div class="cap">
+        <div class="card">
+          <h3>Matrículas por canal</h3>
+          <p class="sub" id="cap-sub"></p>
+          <div class="chart" id="c-canais"></div>
+          <details class="ver-tab"><summary>Ver dados em tabela</summary><div id="tab-canais"></div></details>
+        </div>
+        <div class="card">
+          <h3>De onde vêm as participantes</h3>
+          <p class="sub">A primeira fase concentra a divulgação paga em Uberlândia e no Triângulo Mineiro.</p>
+          <div id="regiao"></div>
+          <div class="mini" id="prova"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-rec">
+      <h2 id="t-rec">Receita da turma</h2>
+      <p class="nota">Programa a 12x de R$ 69,90 (R$ 838,80). Valores contratados, antes da taxa da Hotmart e dos custos de anúncios.</p>
+      <div class="receitas" id="receitas"></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-risco">
+      <h2 id="t-risco">Riscos para acompanhar</h2>
+      <div class="riscos">
+        <article class="card risco"><h3><svg aria-hidden="true"><use href="#i-atencao"/></svg>Adesão e engajamento</h3><p>Rotinas sobrecarregadas e a desconfiança de soluções on-line para questões emocionais podem fazer participantes pararem no meio do caminho.</p><p class="agora" id="risco-eng"></p></article>
+        <article class="card risco"><h3><svg aria-hidden="true"><use href="#i-atencao"/></svg>Normas do Conselho Federal de Psicologia</h3><p>O programa é educativo e não substitui a psicoterapia. Casos que vão além disso precisam de acolhimento e encaminhamento para a rede de apoio.</p><p class="agora" id="risco-cfp"></p></article>
+        <article class="card risco"><h3><svg aria-hidden="true"><use href="#i-atencao"/></svg>Proteção de dados</h3><p>Respostas das tarefas e check-ins são dados sensíveis. A equipe vê só números agregados, e cada participante pode baixar ou apagar o que escreveu.</p><p class="agora">Neste painel: nenhum dado individual de bem-estar.</p></article>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <p>Fontes: Projeto C.A.P.I., PGE 1 (ESAMC Uberlândia, 2026): proposta de intervenção, Business Model Canvas, análise SWOT e pesquisa com participantes. Os números deste painel são simulados para demonstração.</p>
+      <p><a href="/app/">Voltar para a área da aluna</a> · <a href="/">Ir para o site</a></p>
+    </footer>
+  </div>
+</main>
+<div id="tt" role="status" aria-live="polite"></div>
+<script src="/app/gestao/gestao.js" defer></script>
+</body>
+</html>
