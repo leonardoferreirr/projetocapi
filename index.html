@@ -288,10 +288,10 @@ b,strong{font-weight:650}
 .equipe{background:var(--vinho-900);color:#fff;position:relative;isolation:isolate}
 .equipe::after{content:"";position:absolute;inset:0;background-image:var(--grao);opacity:.06;pointer-events:none;z-index:-1}
 .equipe{padding-top:0}
-.equipe-hero{position:relative;overflow:hidden;background:var(--papel)}
-.equipe-foto{position:relative;overflow:hidden;line-height:0}
+.equipe-hero{position:relative;overflow:hidden;background:var(--vinho-900)}
+.equipe-foto{position:relative;overflow:hidden;line-height:0;background:var(--papel)}
 .equipe-foto img{width:100%;height:auto;transform-origin:50% 28%;will-change:transform}
-.equipe-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,21,34,0) 46%,rgba(58,21,34,.5) 72%,var(--vinho-900) 99%)}
+.equipe-foto::after{content:"";position:absolute;inset:-1px 0;background:linear-gradient(180deg,rgba(58,21,34,0) 52%,rgba(58,21,34,.5) 76%,var(--vinho-900) 99%)}
 .equipe-txt{position:relative;z-index:2;text-align:center;padding:0 20px 6px;margin-top:-8vw;background:linear-gradient(180deg,rgba(58,21,34,0),var(--vinho-900) 3rem)}
 .equipe-txt p{margin:16px auto 0;color:#fff;font-size:1.04rem;max-width:34rem}
 .equipe h2{color:#fff}
@@ -330,7 +330,7 @@ b,strong{font-weight:650}
 .inclui li svg{width:24px;height:20px;margin-top:3px;color:var(--coral);fill:currentColor}
 .inclui li b{display:block;font-weight:700;color:var(--ink)}
 .inclui li span{color:var(--muted);font-size:.95rem}
-.indica{margin-top:26px;border-radius:var(--r);background:var(--branco);border:1.5px solid var(--coral);padding:24px 24px 26px}
+.indica{margin-top:26px;border-radius:var(--r);background:transparent;border:1.5px solid var(--coral);padding:24px 24px 26px}
 .indica h3{font-size:1.25rem}
 .indica p{margin-top:8px;color:var(--ink);font-size:.97rem}
 @media (min-width:960px){.oferta{grid-template-columns:5fr 6fr;gap:72px}.preco{position:sticky;top:calc(var(--hh) + 30px);padding:48px 42px 38px}}
@@ -589,7 +589,7 @@ b,strong{font-weight:650}
 
 <section class="sec equipe" id="quem-somos" aria-labelledby="t-eq">
   <div class="equipe-hero">
-    <div class="equipe-foto"><picture><source media="(min-width: 760px)" srcset="/assets/img/equipe-fundo-d-v2.webp"><img src="/assets/img/equipe-fundo-m-v2.webp" width="900" height="662" alt="As cinco autoras do Projeto C.A.P.I. abraçadas, sorrindo" loading="lazy" decoding="async" data-zoom></picture></div>
+    <div class="equipe-foto"><picture><source media="(min-width: 760px)" srcset="/assets/img/equipe-fundo-d-v3.webp"><img src="/assets/img/equipe-fundo-m-v3.webp" width="900" height="607" alt="As cinco autoras do Projeto C.A.P.I. abraçadas, sorrindo" loading="lazy" decoding="async" data-zoom></picture></div>
     <div class="equipe-txt">
       <h2 id="t-eq" class="rv">Quem criou o <b>C.A.P.I.</b></h2>
       <p class="rv d1">Somos cinco mulheres formandas em Psicologia pela ESAMC Uberlândia, e cada uma de nós está vivendo a própria transição de carreira. O projeto nasceu dessa experiência e da escuta de outras mulheres que passaram pelo mesmo caminho.</p>
@@ -678,6 +678,6 @@ b,strong{font-weight:650}
 
 <div class="barra" aria-hidden="true"><div><small>Programa completo</small><b>12x R$ 69,90</b></div><a class="btn" href="#investimento" tabindex="-1">Quero participar</a></div>
 
-<script src="/assets/site-v4.js" defer></script>
+<script src="/assets/site-v5.js" defer></script>
 </body>
 </html>

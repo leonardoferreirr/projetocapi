@@ -99,7 +99,7 @@
     function zMove() {
       zPed = false;
       var vh = w.innerHeight, r = zSec.getBoundingClientRect();
-      var ini = w.matchMedia('(min-width: 760px)').matches ? 1.14 : 1.55;
+      var ini = w.matchMedia('(min-width: 760px)').matches ? 1.08 : 1.28;
       var prog = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));
       var esc = ini - (ini - 1) * (1 - Math.pow(1 - prog, 2));
       zoomImg.style.transform = 'scale(' + esc.toFixed(4) + ')';
