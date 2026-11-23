@@ -91,6 +91,26 @@
     w.addEventListener('scroll', function () { if (noTopo && !pedido) { pedido = true; requestAnimationFrame(mexe); } }, { passive: true });
   }
 
+  /* parallax suave nas fotos de fundo (equipe e citação) */
+  var plx = [].slice.call(d.querySelectorAll('[data-plx]'));
+  if (plx.length && !calmo) {
+    var vis = new Set(), pedPlx = false;
+    var ioX = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) vis.add(e.target); else vis.delete(e.target); }); pede(); }, { rootMargin: '10% 0px' });
+    plx.forEach(function (el) { ioX.observe(el.parentElement); el._sec = el.parentElement; });
+    function pede() { if (!pedPlx) { pedPlx = true; requestAnimationFrame(move); } }
+    function move() {
+      pedPlx = false;
+      var vh = w.innerHeight;
+      plx.forEach(function (el) {
+        if (!vis.has(el._sec)) return;
+        var r = el._sec.getBoundingClientRect(), centro = r.top + r.height / 2 - vh / 2;
+        el.style.transform = 'translate3d(0,' + (-centro * +el.dataset.plx).toFixed(1) + 'px,0)';
+      });
+    }
+    w.addEventListener('scroll', pede, { passive: true });
+    w.addEventListener('resize', pede);
+  }
+
   /* fitas: só correm quando estão na tela */
   var faixa = d.querySelector('.fitas');
   if (faixa) {

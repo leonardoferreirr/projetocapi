@@ -35,15 +35,15 @@
     return { v: 1, user: { nome: nome, email: email || '' }, turma: MESES[hoje.getMonth()] + ' de ' + hoje.getFullYear(), done: {}, ans: {}, notas: {}, ck: {}, creditos: 12, agenda: [], lib: {}, dias: true, abaV: {} };
   }
   function demo() {
-    var s = novo('Mariana Souza', 'mariana@exemplo.com'), agora = Date.now();
+    var s = novo('Jéssika Louzada', 'jessika@exemplo.com'), agora = Date.now();
     s.done = { 1: agora - 3 * H24 - 4e6, 2: agora - 2 * H24 - 3e6, 3: agora - H24 - 36e5 };
     s.ans = {
-      m1_motivo: 'Sinto que parei no tempo no trabalho e o cansaço já não compensa. Quero entender se a Nutrição é um caminho possível para mim.',
+      m1_motivo: 'Quero mudar de área com calma e com os pés no chão, sem largar tudo de uma vez.',
       m1_expect: 'Um plano com datas e a segurança de saber quanto preciso guardar antes de mudar.',
-      m2_historia: 'Comecei como assistente administrativa aos 23 anos. Virei coordenadora aos 29 e gerente aos 33. Nesse meio tempo tive meus dois filhos.',
-      m2_significado: 'Hoje o trabalho é mais obrigação do que realização. Gosto das pessoas, mas não do que faço.',
+      m2_historia: 'Comecei cedo, mudei de função algumas vezes e fui ganhando responsabilidade. Cada etapa me ensinou alguma coisa que levo comigo.',
+      m2_significado: 'Quero que o trabalho tenha mais sentido para mim e para as pessoas que eu atendo.',
       m3_valores: 'Tempo com a família, autonomia, cuidar de pessoas e aprender sempre.',
-      m3_interesses: 'Alimentação, saúde e conversar com pessoas, vendo resultado no dia a dia delas.',
+      m3_interesses: 'Escutar pessoas, estudar comportamento e ver resultado no dia a dia delas.',
       m3_expect: 'Trabalhar com mais flexibilidade e sentir que o que eu faço faz diferença.'
     };
     var hist = [4, 4, 3, 4, 3, 3, 3, 2, 3], sents = [['Medo', 'Insegurança'], ['Insegurança', 'Angústia'], ['Medo', 'Esperança'], ['Insegurança', 'Culpa'], ['Esperança'], ['Medo', 'Entusiasmo'], ['Esperança', 'Insegurança'], ['Entusiasmo', 'Alívio'], ['Esperança']];
@@ -117,11 +117,11 @@
     return '<main class="entrar"><div class="entrar-foto"><svg class="logo" viewBox="0 0 2852 1020" fill="currentColor" role="img" aria-label="Projeto C.A.P.I."><use href="#logo"/></svg>' +
       '<img src="/assets/img/hero-m.webp" srcset="/assets/img/hero-s.webp 480w, /assets/img/hero-m.webp 720w, /assets/img/hero-d.webp 1240w" sizes="(min-width: 980px) 54vw, 100vw" width="720" height="864" alt="" fetchpriority="high"></div>' +
       '<form class="entrar-box" id="fEntrar" novalidate><h1>Boas-vindas à sua área</h1><p class="mut">Entre para assistir aos módulos, fazer as tarefas e acompanhar a sua jornada.</p>' +
-      (mat ? '<div class="aviso" style="margin-top:18px">' + ic('info') + '<span><b>Compra simulada.</b> Na versão real, o pagamento acontece na Hotmart e o acesso chega no seu e-mail.</span></div>' : '') +
+      (mat ? '<div class="aviso" style="margin-top:18px">' + ic('info') + '<span><b>Compra simulada.</b> Na versão real, o acesso chega no seu e-mail logo depois do pagamento.</span></div>' : '') +
       '<label class="campo"><span>Seu nome</span><input class="inp" name="nome" autocomplete="name" required placeholder="Como você quer ser chamada"></label>' +
       '<label class="campo"><span>E-mail</span><input class="inp" name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@email.com"></label>' +
       '<button class="btn" type="submit">Entrar ' + ic('dir') + '</button><p class="ou">ou</p>' +
-      '<button class="btn sec" type="button" data-a="demo" style="width:100%">Ver como a Mariana, já no módulo 4</button>' +
+      '<button class="btn sec" type="button" data-a="demo" style="width:100%">Ver como a Jéssika, já no módulo 4</button>' +
       '<p class="rod">Protótipo: suas respostas ficam salvas só neste navegador. <a href="/">Voltar ao site</a></p></form></main>';
   }
 
@@ -377,7 +377,7 @@
     if (menu && menu.classList.contains('on') && !e.target.closest('#menuav') && !(b && b.dataset.a === 'menu')) { menu.classList.remove('on'); }
     if (!b) return;
     var a = b.dataset.a, v = b.dataset.v;
-    if (a === 'demo') { S = demo(); salva(); history.replaceState(null, '', '/app/#/inicio'); render(true); toast('Você está vendo a área como a Mariana'); }
+    if (a === 'demo') { S = demo(); salva(); history.replaceState(null, '', '/app/#/inicio'); render(true); toast('Você está vendo a área como a Jéssika'); }
     else if (a === 'menu') { var on = menu.classList.toggle('on'); b.setAttribute('aria-expanded', on); }
     else if (a === 'tema') { var nt = temaAtual() === 'escuro' ? 'claro' : 'escuro'; document.documentElement.dataset.tema = nt; try { localStorage.setItem('capi.tema', nt); } catch (er) { } var mt = document.querySelector('meta[name=theme-color]'); if (mt) mt.content = nt === 'escuro' ? '#0F0D0E' : '#F6F4F1'; render(); }
     else if (a === 'sair') { S = null; history.replaceState(null, '', '/app/'); render(true); }

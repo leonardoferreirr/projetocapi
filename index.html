@@ -29,8 +29,8 @@
   --coral:#CC4452;--coral-600:#B53A47;--coral-cl:#E8707B;--vinho:#723147;--vinho-900:#3A1522;
   --creme:#F8E5AD;--preto:#0D0A0B;--preto-2:#171213;--preto-3:#221B1D;
   --papel:#FBF8F3;--papel-2:#F3EDE4;--branco:#FFFFFF;
-  --ink:#1A1315;--muted:#6B5F63;--line:rgba(26,19,21,.12);--line-c:rgba(248,229,173,.18);
-  --cr-90:rgba(248,229,173,.9);--cr-75:rgba(248,229,173,.78);--cr-60:rgba(248,229,173,.64);
+  --ink:#1A1315;--muted:#6B5F63;--line:rgba(26,19,21,.12);--line-c:rgba(255,255,255,.14);
+  --cr-90:rgba(255,255,255,.9);--cr-75:rgba(255,255,255,.78);--cr-60:rgba(255,255,255,.64);
   --display:'Archivo','ArchivoFB','Arial Narrow',Arial,sans-serif;--sans:'Jakarta','JakartaFB',Arial,sans-serif;--titulo:'Poppins','PoppinsFB',Arial,sans-serif;
   --r:22px;--wrap:1240px;--hh:68px;
   --grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -52,7 +52,7 @@ b,strong{font-weight:650}
 .sec{padding-block:clamp(80px,11vw,140px)}
 .center{text-align:center}
 .lede{font-size:1.1rem;color:var(--muted);max-width:40rem;margin:20px auto 0}
-.escuro{background:var(--preto);color:var(--creme);position:relative;isolation:isolate}
+.escuro{background:var(--preto);color:#fff;position:relative;isolation:isolate}
 .escuro::after{content:"";position:absolute;inset:0;background-image:var(--grao);opacity:.07;pointer-events:none;z-index:-1}
 .escuro .lede{color:var(--cr-75)}
 .co{color:var(--coral)}
@@ -68,18 +68,18 @@ b,strong{font-weight:650}
 .btn:hover{--bg:var(--coral-600)}
 .btn svg{width:18px;height:18px;transition:transform .25s}
 .btn:hover svg{transform:translateX(4px)}
-.btn-glass{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 26px;border-radius:999px;color:var(--creme);font:600 1rem/1.1 var(--sans);text-decoration:none;background:rgba(248,229,173,.06);border:1px solid rgba(248,229,173,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);transition:background .2s,border-color .2s}
-.btn-glass:hover{background:rgba(248,229,173,.14);border-color:rgba(248,229,173,.55)}
+.btn-glass{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 26px;border-radius:999px;color:#fff;font:600 1rem/1.1 var(--sans);text-decoration:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);transition:background .2s,border-color .2s}
+.btn-glass:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.55)}
 .btn-line{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border-radius:999px;color:var(--ink);font:600 .95rem/1.1 var(--sans);text-decoration:none;border:1.5px solid var(--ink);background:transparent;transition:background .2s,color .2s}
 .btn-line:hover{background:var(--ink);color:var(--papel)}
 .btns{display:grid;gap:12px;width:fit-content}
 @media (min-width:560px){.btns{display:flex;flex-wrap:wrap}}
 
 /* cabeçalho */
-.top{position:fixed;inset:0 0 auto;z-index:50;height:var(--hh);color:var(--creme);transition:background .3s,box-shadow .3s}
+.top{position:fixed;inset:0 0 auto;z-index:50;height:var(--hh);color:#fff;transition:background .3s,box-shadow .3s}
 .top::before{content:"";position:absolute;inset:0 0 -30px;background:linear-gradient(rgba(13,10,11,.6),rgba(13,10,11,0));pointer-events:none;transition:opacity .3s}
 .top-in{position:relative;height:100%;display:flex;align-items:center;gap:20px}
-.brand{display:block;width:104px;color:inherit;flex:none}
+.brand{display:block;width:104px;color:var(--creme);flex:none}
 .brand svg{width:100%;height:auto;display:block}
 .nav{display:none}
 .top-cta{display:flex;align-items:center;gap:10px;margin-left:auto}
@@ -91,7 +91,7 @@ b,strong{font-weight:650}
 .top.scrolled{background:rgba(13,10,11,.92);box-shadow:0 1px 0 rgba(248,229,173,.08)}
 .top.scrolled::before{opacity:0}
 @supports (backdrop-filter:blur(8px)){.top.scrolled{background:rgba(13,10,11,.86);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3)}}
-.drawer{position:fixed;inset:var(--hh) 0 auto;z-index:49;background:var(--preto);color:var(--creme);padding:8px 20px 26px;box-shadow:0 24px 40px -20px rgba(0,0,0,.6);display:none;border-top:1px solid var(--line-c)}
+.drawer{position:fixed;inset:var(--hh) 0 auto;z-index:49;background:var(--preto);color:#fff;padding:8px 20px 26px;box-shadow:0 24px 40px -20px rgba(0,0,0,.6);display:none;border-top:1px solid var(--line-c)}
 .drawer.open{display:block}
 .drawer > a{display:block;padding:16px 2px;border-bottom:1px solid var(--line-c);text-decoration:none;font:800 1.5rem/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
 .drawer .btns{margin-top:22px;width:100%}
@@ -114,8 +114,8 @@ b,strong{font-weight:650}
 .hero-media{position:relative;height:min(108vw,640px);overflow:hidden}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;transform-origin:50% 30%}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,11,.15) 0%,rgba(13,10,11,0) 25%,rgba(13,10,11,.55) 62%,var(--preto) 97%)}
-.hero-copy{position:relative;margin-top:-40vw;padding-bottom:70px}
-.hero h1{font-size:clamp(3rem,14vw,8.2rem);line-height:.88;letter-spacing:-.02em;text-transform:uppercase;color:#fff}
+.hero-copy{position:relative;margin-top:-36vw;padding-bottom:64px}
+.hero h1{font-size:clamp(2.6rem,12.4vw,7rem);line-height:.88;letter-spacing:-.02em;text-transform:uppercase;color:#fff}
 .hero h1 .l{display:block;overflow:hidden;padding-bottom:.04em}
 .hero h1 .l > span{display:block}
 .hero h1 .co{color:var(--coral)}
@@ -123,7 +123,7 @@ b,strong{font-weight:650}
 .hero .btns{margin-top:30px}
 .hero .nota{margin-top:26px;font-size:.92rem;color:var(--cr-60)}
 .hero .nota::before{content:"";display:inline-block;vertical-align:middle;width:28px;height:1.5px;margin-right:12px;background:var(--coral)}
-.hero .nota b{color:var(--creme);font-weight:600}
+.hero .nota b{color:#fff;font-weight:600}
 .js .hero h1 .l > span{animation:sobe 1s cubic-bezier(.2,.75,.15,1) both}
 .js .hero h1 .l:nth-child(2) > span{animation-delay:.07s}.js .hero h1 .l:nth-child(3) > span{animation-delay:.14s}.js .hero h1 .l:nth-child(4) > span{animation-delay:.21s}
 .js .hero .rise{animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
@@ -136,10 +136,8 @@ b,strong{font-weight:650}
   .hero-media img{object-position:38% 22%}
   .hero-media::after{background:linear-gradient(90deg,var(--preto) 0%,rgba(13,10,11,.85) 18%,rgba(13,10,11,.15) 55%,rgba(13,10,11,0) 80%),linear-gradient(0deg,var(--preto) 0%,rgba(13,10,11,0) 35%)}
   .hero-copy{margin-top:0;padding-block:calc(var(--hh) + 60px) 9vh;width:100%}
-  .hero h1{font-size:clamp(4rem,8.4vw,9rem)}
-  .hero-baixo{display:flex;gap:56px;align-items:flex-end;justify-content:space-between;margin-top:34px}
-  .hero p.sub{margin-top:0}
-  .hero .btns{margin-top:0;flex:none}
+  .hero h1{font-size:clamp(3.6rem,7vw,7.6rem)}
+  .hero .btns{margin-top:40px}
 }
 
 /* fitas */
@@ -172,12 +170,11 @@ b,strong{font-weight:650}
 .dor + .dor{margin-top:18px}
 .dor:nth-child(2){top:calc(var(--hh) + 28px)}.dor:nth-child(3){top:calc(var(--hh) + 40px)}.dor:nth-child(4){top:calc(var(--hh) + 52px)}
 .dor .top-dor{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-.dor .ic{width:48px;height:48px;border-radius:14px;background:var(--preto);color:var(--creme);display:grid;place-items:center}
+.dor .ic{width:48px;height:48px;border-radius:14px;background:var(--preto);color:#fff;display:grid;place-items:center}
 .dor .ic svg{width:22px;height:22px}
 .dor .num::after{content:attr(data-n);font:800 2.6rem/1 var(--display);color:rgba(26,19,21,.12)}
 .dor h3{font-size:1.4rem}
 .dor p{margin-top:10px;color:var(--muted)}
-.dor .dado{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.9rem;color:var(--coral-600);font-weight:500}
 @media (min-width:960px){
   .dores-grid{grid-template-columns:5fr 6fr;gap:80px;align-items:start}
   .dores-cab{position:sticky;top:calc(var(--hh) + 36px)}
@@ -202,28 +199,25 @@ b,strong{font-weight:650}
 .pyr-col{position:sticky;top:var(--hh);z-index:2;background:rgba(13,10,11,.96);padding:14px 20px 16px;margin-inline:-20px;border-bottom:1px solid var(--line-c)}
 .pyr-in{display:flex;align-items:center;gap:20px}
 .pyr{width:92px;height:auto;flex:none;overflow:visible}
-.pyr rect{fill:rgba(248,229,173,.12);transition:fill .45s}
-.pyr text{font:800 30px var(--display);fill:rgba(248,229,173,.4);text-anchor:middle;dominant-baseline:central;transition:fill .45s}
-.pyr g.feito rect{fill:var(--creme)}
+.pyr rect{fill:rgba(255,255,255,.1);transition:fill .45s}
+.pyr text{font:800 30px var(--display);fill:rgba(255,255,255,.42);text-anchor:middle;dominant-baseline:central;transition:fill .45s}
+.pyr g.feito rect{fill:#fff}
 .pyr g.feito text{fill:var(--preto)}
 .pyr g.ativo rect{fill:var(--coral)}
 .pyr g.ativo text{fill:#fff}
 .pyr-leg{font-size:.9rem;line-height:1.35;color:var(--cr-60)}
-.pyr-leg b{display:block;font:800 1.2rem/1.1 var(--display);text-transform:uppercase;color:var(--creme)}
-.pilar{padding-block:48px;border-bottom:1px solid var(--line-c);min-height:64vh;display:flex;flex-direction:column;justify-content:center}
+.pyr-leg b{display:block;font:800 1.2rem/1.1 var(--display);text-transform:uppercase;color:#fff}
+.pilar{padding-block:40px;border-bottom:1px solid var(--line-c);min-height:46vh;display:flex;flex-direction:column;justify-content:center}
 .pilar:last-child{border-bottom:0}
 .pilar h3{font:800 clamp(2.3rem,10.6vw,5.4rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.025em;color:#fff;white-space:nowrap}
 .pilar h3 .ini{color:var(--coral);display:inline-block;transform-origin:50% 90%}
 .pilar.ativo h3 .ini{animation:ini .7s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes ini{from{transform:translateY(.15em) scale(.85)}to{transform:none}}
-.pilar .mods{margin-top:14px;font-size:.95rem;color:var(--cr-75);display:flex;align-items:center;gap:12px}
-.pilar .mods::before{content:"";width:28px;height:1.5px;background:var(--coral)}
+.pilar .mods{margin-top:12px;font-size:.95rem;color:var(--cr-75)}
 .pilar p.txt{margin-top:18px;font-size:1.08rem;color:var(--cr-90);max-width:34rem}
 .pilar ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;max-width:34rem}
 .pilar li{position:relative;padding-left:24px;font-size:.98rem;color:var(--cr-75)}
 .pilar li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:10px;background:var(--coral);-webkit-mask:var(--degraus) center/contain no-repeat;mask:var(--degraus) center/contain no-repeat}
-.pilar .sai{margin-top:26px;display:inline-block;padding:14px 18px;border-radius:16px;background:rgba(248,229,173,.06);border:1px solid var(--line-c);font-size:.95rem;color:var(--cr-75)}
-.pilar .sai b{color:var(--creme)}
 @media (min-width:960px){
   .metodo-grid{grid-template-columns:4fr 7fr;gap:80px;margin-top:64px}
   .pyr-col{position:relative;top:auto;margin:0;padding:0;border:0;background:none}
@@ -232,7 +226,7 @@ b,strong{font-weight:650}
   .pyr text{font-size:24px}
   .pyr-leg{font-size:1rem}
   .pyr-leg b{font-size:1.8rem}
-  .pilar{min-height:80vh;padding-block:64px}
+  .pilar{min-height:54vh;padding-block:48px}
 }
 
 /* como funciona */
@@ -241,7 +235,7 @@ b,strong{font-weight:650}
 .passo{position:relative;display:grid;grid-template-columns:58px 1fr;gap:18px;padding-bottom:34px}
 .passo::before{content:"";position:absolute;left:28px;top:58px;bottom:0;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 12px)}
 .passo:last-child::before{display:none}
-.passo .n{width:58px;height:58px;border-radius:18px;background:var(--preto);color:var(--creme);display:grid;place-items:center;font:800 1.25rem/1 var(--display)}
+.passo .n{width:58px;height:58px;border-radius:18px;background:var(--preto);color:#fff;display:grid;place-items:center;font:800 1.25rem/1 var(--display)}
 .passo:last-child .n{background:var(--coral);color:#fff}
 .passo h3{padding-top:14px;font-size:1.35rem}
 .passo p{margin-top:8px;color:var(--muted)}
@@ -254,7 +248,7 @@ b,strong{font-weight:650}
 
 /* citação */
 .cita{overflow:hidden}
-.cita-media{position:absolute;inset:0;z-index:-2}
+.cita-media{position:absolute;inset:-14% 0;z-index:-2;will-change:transform}
 .cita-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .cita-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,11,.62),rgba(13,10,11,.86))}
 .cita .wrap{position:relative;padding-block:clamp(110px,15vw,190px)}
@@ -277,8 +271,8 @@ b,strong{font-weight:650}
 .comp thead th:first-child,.comp tbody th{width:31%}
 .comp tbody th{text-align:left;font-weight:600;padding-left:12px;color:var(--ink);line-height:1.3}
 .comp tbody tr:last-child th,.comp tbody tr:last-child td{border-bottom:0}
-.comp tr.capi{background:var(--preto);color:var(--creme)}
-.comp tr.capi th{color:var(--creme);font:800 1rem/1.1 var(--display);text-transform:uppercase}
+.comp tr.capi{background:var(--preto);color:#fff}
+.comp tr.capi th{color:#fff;font:800 1rem/1.1 var(--display);text-transform:uppercase}
 .comp svg{width:20px;height:20px;display:inline-block;vertical-align:middle}
 .sim{color:var(--ink)}.parte{color:#B98A33}.nao{color:rgba(26,19,21,.26)}
 .capi .sim{color:var(--coral)}
@@ -288,12 +282,25 @@ b,strong{font-weight:650}
 @media (min-width:700px){.comp{font-size:1rem}.comp th,.comp td{padding:20px 14px}.comp thead th{font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}.comp tbody th{padding-left:26px}.comp tr.capi th{font-size:1.25rem}}
 
 /* equipe */
-.equipe{background:var(--vinho-900);color:var(--creme);position:relative;isolation:isolate}
+.equipe{background:var(--vinho-900);color:#fff;position:relative;isolation:isolate}
 .equipe::after{content:"";position:absolute;inset:0;background-image:var(--grao);opacity:.06;pointer-events:none;z-index:-1}
-.equipe-top{display:grid;gap:36px;align-items:center}
-.equipe h2{color:#fff;margin-bottom:clamp(36px,5vw,60px)}
-.equipe-top p{margin-top:20px;color:var(--cr-90);font-size:1.06rem;max-width:32rem}
-.equipe-top .grupo-foto{border-radius:var(--r);overflow:hidden}
+.equipe{padding-top:0}
+.equipe-hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:min(118vw,620px)}
+.equipe-bg{position:absolute;left:0;right:0;top:-6%;bottom:-6%;z-index:0;display:flex;align-items:flex-end;justify-content:center;will-change:transform}
+.equipe-bg picture{display:block;width:100%}
+.equipe-bg img{width:100%;height:auto;margin-inline:auto}
+.equipe-hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--vinho-900) 0%,rgba(58,21,34,0) 26%,rgba(58,21,34,.15) 52%,rgba(28,9,16,.82) 80%,var(--vinho-900) 100%)}
+.equipe-txt{position:relative;z-index:2;text-align:center;padding:0 20px 40px}
+.equipe-txt p{margin:18px auto 0;color:#fff;font-size:1.06rem;max-width:34rem;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.equipe h2{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.equipe h2 b{font-weight:500}
+@media (max-width:759px){
+  .equipe-hero{min-height:min(170vw,780px)}
+  .equipe-bg{align-items:flex-start;top:-4%;bottom:-4%;overflow:hidden}
+  .equipe-bg picture{width:auto;display:flex;justify-content:center}
+  .equipe-bg img{width:172vw;max-width:none;margin-top:12vw}
+  .equipe-hero::after{background:linear-gradient(180deg,var(--vinho-900) 0%,rgba(58,21,34,0) 14%,rgba(58,21,34,0) 46%,rgba(28,9,16,.88) 70%,var(--vinho-900) 100%)}
+}
 .pessoas{display:grid;grid-auto-flow:column;grid-auto-columns:min(74%,280px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:48px -20px 0;padding:0 20px 8px;scrollbar-width:none}
 .pessoas::-webkit-scrollbar{display:none}
 .pessoa{scroll-snap-align:start;background:var(--coral);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
@@ -301,26 +308,26 @@ b,strong{font-weight:650}
 .pessoa:hover img{transform:scale(1.04)}
 .pessoa div{padding:18px 18px 22px;background:var(--preto);flex:1;position:relative;z-index:1}
 .pessoa h3{color:#fff;font-size:1.35rem}
-.pessoa p{margin-top:8px;font-size:.92rem;line-height:1.5;color:var(--cr-75)}
-.equipe .orient{margin-top:32px;font-size:.92rem;color:var(--cr-75);text-align:center}
+.pessoa p{margin-top:8px;font-size:.92rem;line-height:1.5;color:rgba(255,255,255,.82)}
+.equipe .orient{margin-top:32px;font-size:.92rem;color:rgba(255,255,255,.75);text-align:center}
 @media (min-width:960px){
-  .equipe-top{grid-template-columns:5fr 6fr;gap:72px}
+  .equipe-hero{min-height:max(640px,92vh)}
+  .equipe-bg picture{height:100%;display:flex;align-items:flex-end;justify-content:center}
+  .equipe-bg img{width:auto;height:94%;max-width:100%;object-fit:contain;object-position:50% 100%}
+  .equipe-txt{padding-bottom:64px}
   .pessoas{grid-auto-flow:row;grid-template-columns:repeat(5,1fr);overflow:visible;margin:60px 0 0;padding:0}
 }
 
 /* investimento */
 .oferta{display:grid;gap:34px;margin-top:48px;align-items:start}
-.preco{background:var(--preto);color:var(--creme);border-radius:30px;padding:36px 24px 30px;position:relative;overflow:hidden;isolation:isolate}
-.preco::before{content:"";position:absolute;right:-70px;bottom:-50px;width:320px;height:270px;opacity:.14;background:var(--coral);z-index:-1;-webkit-mask:var(--degraus) center/contain no-repeat;mask:var(--degraus) center/contain no-repeat}
+.preco{background:var(--preto);color:#fff;border-radius:30px;padding:36px 24px 30px;position:relative;overflow:hidden;isolation:isolate}
 .preco::after{content:"";position:absolute;inset:0;background-image:var(--grao);opacity:.07;z-index:-1}
 .preco .rot{font-size:1rem;color:var(--cr-75)}
 .preco .valor{display:flex;align-items:baseline;gap:10px;margin-top:14px;flex-wrap:wrap}
 .preco .valor span{font:800 1.4rem/1 var(--display);text-transform:uppercase}
 .preco .valor b{font:800 clamp(3.8rem,15vw,6rem)/.9 var(--display);letter-spacing:-.04em;color:#fff}
 .preco .total{margin-top:12px;color:var(--cr-75)}
-.preco .pizza{display:inline-block;margin-top:20px;padding:10px 16px;border-radius:12px;background:var(--creme);color:var(--preto);font:800 1rem/1.1 var(--display);text-transform:uppercase}
 .preco .btn{width:100%;margin-top:30px;font-size:1.05rem;min-height:60px}
-.preco .seg{margin-top:16px;font-size:.85rem;color:var(--cr-60);text-align:center}
 .inclui h3{font-size:1.35rem}
 .inclui ul{list-style:none;margin:18px 0 0;padding:0}
 .inclui li{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -359,22 +366,22 @@ b,strong{font-weight:650}
 
 
 /* rodapé */
-.rodape{background:#080607;color:var(--cr-75);font-size:.92rem;padding:70px 0 calc(40px + env(safe-area-inset-bottom))}
-.rodape .marca-gde{color:var(--creme);display:block;width:100%;max-width:760px}
+.rodape{background:#080607;color:rgba(255,255,255,.74);font-size:.92rem;padding:70px 0 calc(40px + env(safe-area-inset-bottom))}
+.rodape .marca-gde{color:var(--creme);display:block;width:150px}
 .rodape .marca-gde svg{display:block;width:100%;height:auto}
-.rod-grid{display:grid;gap:34px;margin-top:48px}
+.rod-grid{display:grid;gap:34px;margin-top:36px}
 .rodape p.sob{max-width:26rem}
-.rodape h3{margin:0 0 12px;font:800 1rem/1 var(--display);text-transform:uppercase;color:var(--creme);letter-spacing:.02em}
+.rodape h3{margin:0 0 12px;font:800 1rem/1 var(--display);text-transform:uppercase;color:#fff;letter-spacing:.02em}
 .rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .rodape a{text-decoration:none}
-.rodape a:hover{color:var(--creme)}
+.rodape a:hover{color:#fff}
 .sos{margin-top:44px;padding:18px 20px;border-radius:16px;border:1px solid var(--line-c);color:var(--cr-90)}
-.sos b{color:var(--creme)}
-.rod-fim{margin-top:34px;padding-top:22px;border-top:1px solid var(--line-c);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.84rem;color:var(--cr-60)}
+.sos b{color:#fff}
+.rod-fim{margin-top:34px;padding-top:22px;border-top:1px solid var(--line-c);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.84rem;color:rgba(255,255,255,.62)}
 @media (min-width:860px){.rod-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
 
 /* barra fixa no celular */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(13,10,11,.96);color:var(--creme);border-top:1px solid var(--line-c);transform:translateY(110%);transition:transform .35s}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(13,10,11,.96);color:#fff;border-top:1px solid var(--line-c);transform:translateY(110%);transition:transform .35s}
 .barra.on{transform:none}
 .barra small{display:block;font-size:.78rem;color:var(--cr-60);line-height:1.2}
 .barra b{font:800 1.3rem/1.1 var(--display)}
@@ -421,14 +428,10 @@ b,strong{font-weight:650}
   </div>
   <div class="wrap hero-copy">
     <h1 id="titulo"><span class="l"><span>Sua nova</span></span><span class="l"><span>carreira,</span></span><span class="l"><span class="co">degrau por</span></span><span class="l"><span class="co">degrau.</span></span></h1>
-    <div class="hero-baixo">
-      <p class="sub rise">Trinta dias para organizar as emoções e o dinheiro, com método, para mulheres acima dos 30 que querem mudar de carreira sem colocar em risco o sustento da família.</p>
-      <div class="btns rise d2">
-        <a class="btn" href="#investimento">Quero participar <svg aria-hidden="true"><use href="#seta"/></svg></a>
-        <a class="btn-glass" href="#como-funciona">Ver como funciona</a>
-      </div>
+    <div class="btns rise">
+      <a class="btn" href="#investimento">Quero participar <svg aria-hidden="true"><use href="#seta"/></svg></a>
+      <a class="btn-glass" href="#como-funciona">Ver como funciona</a>
     </div>
-    <p class="nota rise d3">A próxima turma começa em <b data-turma>1º de dezembro</b></p>
   </div>
 </section>
 
@@ -451,25 +454,21 @@ b,strong{font-weight:650}
         <div class="top-dor"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M16 13h2M3 7l3-4h12l3 4"/></svg></div><span class="num" data-n="01" aria-hidden="true"></span></div>
         <h3>O medo de errar com o dinheiro</h3>
         <p>Mudar quase sempre significa um tempo de renda menor, curso novo para pagar e a família contando com você. Sem saber quanto isso custa e por quanto tempo dá para sustentar, a decisão fica parada.</p>
-        <p class="dado">69% dos brasileiros não têm reserva para imprevistos (CNI, 2022).</p>
       </article>
       <article class="dor">
         <div class="top-dor"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div><span class="num" data-n="02" aria-hidden="true"></span></div>
         <h3>O luto da identidade profissional</h3>
         <p>Deixar um lugar onde você já era referência mexe com quem você é diante da família e dos outros, e ainda tem quem pergunte por que mudar se você “estava bem”.</p>
-        <p class="dado">Medo e insegurança foram os sentimentos mais citados na nossa pesquisa, por 5 de 7 participantes.</p>
       </article>
       <article class="dor">
         <div class="top-dor"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5"/><path d="M3 14h6M15 14h6"/></svg></div><span class="num" data-n="03" aria-hidden="true"></span></div>
         <h3>Soluções que só olham um lado</h3>
         <p>As planilhas de finanças ignoram o medo, e os conselhos de carreira ignoram quem tem contas fixas e filhos. Você acaba juntando sozinha pedaços que não conversam entre si.</p>
-        <p class="dado">100% das pessoas ouvidas consideram importante o planejamento financeiro antes da transição.</p>
       </article>
       <article class="dor">
         <div class="top-dor"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><span class="num" data-n="04" aria-hidden="true"></span></div>
         <h3>Uma rotina que não sobra tempo</h3>
         <p>Trabalho, casa e cuidado com os filhos ocupam o dia inteiro, e as suas próprias necessidades vão ficando para depois. Qualquer apoio precisa caber nessa rotina.</p>
-        <p class="dado">Mulheres dedicam 21,3 horas por semana a afazeres domésticos e cuidado, contra 11,7 dos homens (IBGE, 2022).</p>
       </article>
     </div>
   </div>
@@ -509,30 +508,26 @@ b,strong{font-weight:650}
       <article class="pilar ativo" data-i="0" data-nome="Comportamento" data-mods="Módulos 1 a 10">
         <h3><span class="ini">C</span>omportamento</h3>
         <p class="mods">Módulos 1 a 10</p>
-        <p class="txt">O ponto de partida. Você olha para os seus hábitos, padrões e reações diante do trabalho de hoje, e aprende a perceber os pensamentos que aparecem quando imagina a mudança.</p>
+        <p class="txt">O ponto de partida. Você olha para os seus hábitos, padrões e reações diante do trabalho de hoje, e aprende a perceber os pensamentos que aparecem quando imagina a mudança. No fim do pilar, você tem o seu Registro de autoconhecimento.</p>
         <ul><li>Sua história profissional e o que o trabalho significa para você</li><li>Medo de fracassar, insegurança e autocrítica</li><li>Procrastinação, evitação e dificuldade para decidir</li></ul>
-        <p class="sai">Você sai com o seu <b>Registro de autoconhecimento</b></p>
       </article>
       <article class="pilar" data-i="1" data-nome="Atitude" data-mods="Módulos 11 a 15">
         <h3><span class="ini">A</span>titude</h3>
         <p class="mods">Módulos 11 a 15</p>
-        <p class="txt">A disposição para mudar. Você separa riscos reais de riscos imaginados, pesa vantagens e desvantagens de cada caminho, inclusive o de ficar onde está, e assume a decisão como sua.</p>
+        <p class="txt">A disposição para mudar. Você separa riscos reais de riscos imaginados, pesa vantagens e desvantagens de cada caminho, inclusive o de ficar onde está, e assume a decisão como sua. No fim, você monta o seu Quadro de possibilidades e decisões.</p>
         <ul><li>Decisões no impulso e decisões planejadas</li><li>Obstáculos reais e obstáculos percebidos</li><li>Formas de lidar com a insegurança</li></ul>
-        <p class="sai">Você sai com o seu <b>Quadro de possibilidades e decisões</b></p>
       </article>
       <article class="pilar" data-i="2" data-nome="Planejamento" data-mods="Módulos 16 a 25">
         <h3><span class="ini">P</span>lanejamento</h3>
         <p class="mods">Módulos 16 a 25</p>
-        <p class="txt">A estrutura. A vontade de mudar vira etapas concretas, com tempo, formação, rede de apoio e o contexto da sua família colocados na conta.</p>
+        <p class="txt">A estrutura. A vontade de mudar vira etapas concretas, com tempo, formação, rede de apoio e o contexto da sua família colocados na conta, até chegar ao seu Plano de ação profissional.</p>
         <ul><li>Competências que você já tem e o que falta aprender</li><li>Objetivos de curto, médio e longo prazo</li><li>Cronograma realista, com margem para imprevistos</li></ul>
-        <p class="sai">Você sai com o seu <b>Plano de ação profissional</b></p>
       </article>
       <article class="pilar" data-i="3" data-nome="Investimento" data-mods="Módulos 26 a 30">
         <h3><span class="ini">I</span>nvestimento</h3>
         <p class="mods">Módulos 26 a 30</p>
-        <p class="txt">A execução. Você entende a sua relação com o dinheiro e organiza orçamento, reserva e custos de formação, para que ele trabalhe a favor do seu projeto.</p>
+        <p class="txt">A execução. Você entende a sua relação com o dinheiro e organiza orçamento, reserva e custos de formação, para que ele trabalhe a favor do seu projeto. É aqui que fecha o seu Plano Individual de Transição de Carreira.</p>
         <ul><li>Receitas, despesas e orçamento da família</li><li>Reserva para os meses de renda instável</li><li>Quanto custa a formação e o que vem primeiro</li></ul>
-        <p class="sai">Você sai com o seu <b>Plano Individual de Transição de Carreira</b></p>
       </article>
     </div>
   </div>
@@ -549,7 +544,7 @@ b,strong{font-weight:650}
         <li class="passo rv"><span class="n">04</span><div><h3>Um ano de encontros em grupo</h3><p>Com o plano pronto, você recebe 12 créditos para encontros semanais em grupos fechados de até 20 mulheres, conduzidos pela nossa equipe. Você escolhe as datas conforme a sua necessidade.</p></div></li>
       </ol>
       <div class="celular rv d1">
-        <div class="moldura"><img src="/assets/img/app-celular-v2.webp" width="390" height="800" alt="Tela da área da aluna no celular, com o módulo do dia e o progresso da jornada" loading="lazy" decoding="async"></div>
+        <div class="moldura"><img src="/assets/img/app-celular-v3.webp" width="390" height="800" alt="Tela da área da aluna no celular, com o módulo do dia e o progresso da jornada" loading="lazy" decoding="async"></div>
         <a class="btn-line" href="/app/">Conhecer a área da aluna</a>
       </div>
     </div>
@@ -557,7 +552,7 @@ b,strong{font-weight:650}
 </section>
 
 <section class="cita escuro" aria-label="Citação">
-  <div class="cita-media"><img src="/assets/img/escada-passos-s.webp" srcset="/assets/img/escada-passos-s.webp 520w, /assets/img/escada-passos.webp 900w" sizes="100vw" width="900" height="876" alt="" loading="lazy" decoding="async"></div>
+  <div class="cita-media" data-plx="0.16"><img src="/assets/img/escada-passos-s.webp" srcset="/assets/img/escada-passos-s.webp 520w, /assets/img/escada-passos.webp 900w" sizes="100vw" width="900" height="876" alt="" loading="lazy" decoding="async"></div>
   <div class="wrap">
     <blockquote class="rv">“Toda decisão financeira é também uma decisão <span class="co">emocional.</span>”</blockquote>
     <cite class="rv d1">Vera Rita de Mello Ferreira, psicóloga e referência em Psicologia Econômica no Brasil</cite>
@@ -596,14 +591,14 @@ b,strong{font-weight:650}
 </section>
 
 <section class="sec equipe" id="quem-somos" aria-labelledby="t-eq">
-  <div class="wrap">
-    <h2 id="t-eq" class="rv">Quem criou o <em>C.A.P.I.</em></h2>
-    <div class="equipe-top">
-      <div>
-        <p class="rv d1">Somos cinco mulheres formandas em Psicologia pela ESAMC Uberlândia, e cada uma de nós está vivendo a própria transição de carreira. O projeto nasceu dessa experiência e da escuta de outras mulheres que passaram pelo mesmo caminho.</p>
-      </div>
-      <div class="grupo-foto rv d2"><img src="/assets/img/equipe-grupo.webp" width="1000" height="750" alt="As cinco autoras do Projeto C.A.P.I. abraçadas, sorrindo" loading="lazy" decoding="async"></div>
+  <div class="equipe-hero">
+    <div class="equipe-bg" data-plx="0.12"><picture><source media="(min-width: 760px)" srcset="/assets/img/equipe-fundo-d.webp"><img src="/assets/img/equipe-fundo-m.webp" width="900" height="662" alt="As cinco autoras do Projeto C.A.P.I. abraçadas, sorrindo" loading="lazy" decoding="async"></picture></div>
+    <div class="equipe-txt">
+      <h2 id="t-eq" class="rv">Quem criou o <b>C.A.P.I.</b></h2>
+      <p class="rv d1">Somos cinco mulheres formandas em Psicologia pela ESAMC Uberlândia, e cada uma de nós está vivendo a própria transição de carreira. O projeto nasceu dessa experiência e da escuta de outras mulheres que passaram pelo mesmo caminho.</p>
     </div>
+  </div>
+  <div class="wrap">
     <div class="pessoas">
       <article class="pessoa rv"><img src="/assets/img/equipe-andrea.webp" width="420" height="720" alt="Andréa" loading="lazy" decoding="async"><div><h3>Andréa</h3><p>Administradora e servidora pública federal, pós-graduada em Direito e Contabilidade Trabalhista. Leva para a Psicologia anos de gestão de pessoas.</p></div></article>
       <article class="pessoa rv d1"><img src="/assets/img/equipe-jessika.webp" width="420" height="720" alt="Jéssika" loading="lazy" decoding="async"><div><h3>Jéssika</h3><p>Atua com Terapia Cognitivo-Comportamental e Análise do Comportamento Aplicada, com uma escuta acolhedora e atenta a cada pessoa.</p></div></article>
@@ -611,7 +606,7 @@ b,strong{font-weight:650}
       <article class="pessoa rv d3"><img src="/assets/img/equipe-priscila.webp" width="420" height="720" alt="Priscila" loading="lazy" decoding="async"><div><h3>Priscila</h3><p>Técnica em Radiologia e formada em Logística, trabalha com licitações. Retomou um sonho antigo, que tinha ficado para depois.</p></div></article>
       <article class="pessoa rv"><img src="/assets/img/equipe-thais.webp" width="420" height="720" alt="Thaís" loading="lazy" decoding="async"><div><h3>Thaís</h3><p>Formada em Administração e Relações Públicas, atua no mercado financeiro. Foi dali que surgiu a ideia de unir Psicologia e dinheiro.</p></div></article>
     </div>
-    <p class="orient">Orientação: Prof. Me. José Alberto Manoel. Identidade visual: Demer Rios.</p>
+    <p class="orient">Orientação: Prof. Me. José Alberto Manoel</p>
   </div>
 </section>
 
@@ -623,9 +618,7 @@ b,strong{font-weight:650}
         <p class="rot">Programa completo, com um ano de acompanhamento</p>
         <p class="valor"><span>12x de</span><b>R$&nbsp;69,90</b></p>
         <p class="total">ou R$ 838,80 no total</p>
-        <p class="pizza">Menos do que uma pizza por mês</p>
         <a class="btn" href="/app/?matricula=1" data-cta="oferta">Quero participar <svg aria-hidden="true"><use href="#seta"/></svg></a>
-        <p class="seg">Pagamento seguro pela Hotmart. Você tem 7 dias para desistir depois da compra.</p>
       </div>
       <div class="inclui">
         <h3 class="rv">O que está incluído</h3>
@@ -688,6 +681,6 @@ b,strong{font-weight:650}
 
 <div class="barra" aria-hidden="true"><div><small>Programa completo</small><b>12x R$ 69,90</b></div><a class="btn" href="#investimento" tabindex="-1">Quero participar</a></div>
 
-<script src="/assets/site-v2.js" defer></script>
+<script src="/assets/site-v3.js" defer></script>
 </body>
 </html>

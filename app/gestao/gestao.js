@@ -268,20 +268,20 @@
       k.appendChild(kpi('Sem avançar há mais de 3 dias', String(t.paradas), 'precisam de um contato da equipe', status('atencao', 'Atenção')));
       k.appendChild(kpi('Ansiedade média hoje', n1(t.be[t.be.length - 1]), 'linha de base da pesquisa: 3,7', status('ok', 'Abaixo da base')));
       k.appendChild(kpi('Check-ins hoje', t.checkHoje + ' de ' + t.mat, pc(t.checkHoje / t.mat) + ' da turma respondeu'));
-      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da Hotmart', null, true));
+      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da plataforma de pagamento', null, true));
     } else if (t.estado === 'encerrada') {
       var tot = creditosTotal(t);
       k.appendChild(kpi('Concluíram os 30 módulos', t.concl + ' de ' + t.mat, pc(t.concl / t.mat) + ' saíram com o Plano Individual'));
       k.appendChild(kpi('Créditos de encontros usados', t.credUsados + ' de ' + tot, pc(t.credUsados / tot) + ' do total da turma'));
       k.appendChild(kpi('Ansiedade no último dia', n1(t.be[29]), 'começou em ' + n1(t.be[0]) + ' no dia 1', status('ok', 'Abaixo da base')));
       k.appendChild(kpi('Check-in médio por dia', t.checkMedio + '%', 'das participantes responderam'));
-      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da Hotmart', null, true));
+      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da plataforma de pagamento', null, true));
     } else {
       k.appendChild(kpi('Começa em', t.comeca, 'faltam ' + t.faltam + ' dias'));
       k.appendChild(kpi('Meta de exemplo', t.metaExemplo + ' matrículas', pc(t.mat / t.metaExemplo) + ' alcançado até agora'));
       k.appendChild(kpi('Por indicação', String(t.canais[4]), 'de participantes das turmas anteriores'));
       k.appendChild(kpi('Com presente de 50%', String(t.presentes), 'amigas de quem publicou depoimento'));
-      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da Hotmart', null, true));
+      k.appendChild(kpi('Receita contratada', brl(R), 'em 12 parcelas, antes da taxa da plataforma de pagamento', null, true));
     }
   }
 
