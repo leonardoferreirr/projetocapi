@@ -4,3 +4,5 @@ tools/og.html
 tools/material/guia.html
 node_modules/
 .vercel
+tools/fonte/ps/*.psd
+tools/fonte/ps/*.jpg
