@@ -29,8 +29,8 @@
   var S = null;
   try { S = JSON.parse(localStorage.getItem(KEY)); } catch (e) { S = null; }
   function salva() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } }
-  /* demonstração antiga (Mariana) vira a da Jéssika */
-  if (S && S.user && /^Mariana/.test(S.user.nome || '')) { S = null; setTimeout(function () { S = demo(); salva(); render(true); }, 0); }
+  /* demonstração antiga (Mariana) vira a da Jéssika; só a conta de exemplo, nunca uma aluna real */
+  if (S && S.user && S.user.email === 'mariana@exemplo.com') { S = null; setTimeout(function () { S = demo(); salva(); render(true); }, 0); }
   function dkey(d) { d = d || new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function novo(nome, email) {
     var hoje = new Date();
