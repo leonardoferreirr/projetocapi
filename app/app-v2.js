@@ -148,7 +148,7 @@
     var W = 620, H = 170, L = 26, R = 10, T = 12, B = 26, x = function (k) { return L + k * (W - L - R) / 13; }, y = function (v) { return T + (H - T - B) * (1 - (v - 1) / 4); };
     var g = '';
     for (i = 1; i <= 5; i++) g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(i) + '" y2="' + y(i) + '" style="stroke:var(--line)"/><text x="' + (L - 10) + '" y="' + (y(i) + 4) + '" text-anchor="end">' + i + '</text>';
-    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(3.7) + '" y2="' + y(3.7) + '" style="stroke:var(--ouro)" stroke-dasharray="4 5" stroke-width="1.5"/><text x="' + (W - R) + '" y="' + (y(3.7) - 6) + '" text-anchor="end">média da pesquisa: 3,7</text>';
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(3.7) + '" y2="' + y(3.7) + '" style="stroke:var(--apoio)" stroke-dasharray="4 5" stroke-width="1.5"/><text x="' + (W - R) + '" y="' + (y(3.7) - 6) + '" text-anchor="end">média da pesquisa: 3,7</text>';
     var pts = dias.map(function (o, k) { return o.c ? [x(k), y(o.c.n), o.c.n] : null; }).filter(Boolean);
     if (pts.length > 1) g += '<polyline fill="none" stroke="#CC4452" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') + '"/>';
     g += pts.map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4.5" fill="#CC4452" style="stroke:var(--s1)" stroke-width="2"/>'; }).join('');

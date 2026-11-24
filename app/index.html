@@ -20,19 +20,19 @@
 @font-face{font-family:'Jakarta';src:url('/assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-display:optional}
 @font-face{font-family:'JakartaFB';src:local('Arial'),local('Helvetica Neue'),local('Liberation Sans');size-adjust:105%}
 :root,[data-tema=claro]{
-  --coral:#CC4452;--coral-600:#B53A47;--coral-t:#B53A47;--bordo:#723147;--creme:#F8E5AD;--ouro:#C99232;
+  --coral:#CC4452;--coral-600:#B53A47;--coral-t:#B53A47;--bordo:#723147;--creme:#F8E5AD;--apoio:#723147;
   --bg:#F6F4F1;--s1:#FFFFFF;--s2:#F2EEE9;--s3:#E8E2DB;--s4:#DDD5CD;
   --txt:#1A1517;--mut:#5F5357;--fra:#766A6E;--line:rgba(26,21,23,.09);--line2:rgba(26,21,23,.16);
-  --ok:#2F8A57;--okbg:rgba(47,138,87,.12);--okink:#fff;--logo:#723147;
+  --ok:#723147;--okbg:rgba(114,49,71,.1);--okink:#fff;--logo:#723147;
   --barbg:rgba(255,255,255,.92);--barbg2:rgba(255,255,255,.78);--tabbg:rgba(255,255,255,.97);--avisobg:#FBF4DE;--sombra:0 18px 40px -24px rgba(26,21,23,.28);
   color-scheme:light;
   --display:'ArchivoCAPI','ArchivoFB','Arial Narrow',Arial,sans-serif;--sans:'Jakarta','JakartaFB',Arial,sans-serif;--titulo:'PoppinsCAPI','PoppinsFB',Arial,sans-serif;--r:18px;--bh:64px;
 }
 [data-tema=escuro]{
-  --coral-t:#EE7A85;
+  --apoio:#F8E5AD;
   --bg:#0F0D0E;--s1:#181516;--s2:#211D1F;--s3:#2C2729;--s4:#383234;
   --txt:#F3EEE9;--mut:rgba(243,238,233,.68);--fra:rgba(243,238,233,.56);--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.15);
-  --ok:#7CC79A;--okbg:rgba(124,199,154,.14);--okink:#10261A;--logo:#F8E5AD;
+  --ok:#F8E5AD;--okbg:rgba(248,229,173,.12);--okink:#3B1724;--logo:#F8E5AD;
   --barbg:rgba(15,13,14,.92);--barbg2:rgba(15,13,14,.76);--tabbg:rgba(15,13,14,.97);--avisobg:rgba(248,229,173,.07);--sombra:0 18px 40px -24px rgba(0,0,0,.7);
   color-scheme:dark;
 }
@@ -115,12 +115,13 @@ p{margin:0}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media (min-width:980px){.toast{bottom:32px}}
 .aviso{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--avisobg);border:1px dashed var(--line2);font-size:.9rem;color:var(--mut)}
-.aviso svg{width:20px;height:20px;flex:none;margin-top:1px;color:var(--ouro)}
+.aviso svg{width:20px;height:20px;flex:none;margin-top:1px;color:var(--apoio)}
 .aviso b{color:var(--txt)}
 .etq{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--s3);color:var(--mut)}
 .etq svg{width:14px;height:14px;flex:none}
 .etq.ok{background:var(--okbg);color:var(--ok)}
 .etq.coral{background:rgba(204,68,82,.14);color:var(--coral-t)}
+[data-tema=escuro] .etq.coral{background:var(--coral-600);color:#fff}
 
 /* entrar */
 .entrar{min-height:100svh;display:grid}
